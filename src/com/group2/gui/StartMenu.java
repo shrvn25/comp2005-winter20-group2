@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import com.group10.startingstoppinggame.*;
+import com.group2.startingstoppinggame.*;
 
 public class StartMenuGUI extends JFrame {
     //Instance Variables
