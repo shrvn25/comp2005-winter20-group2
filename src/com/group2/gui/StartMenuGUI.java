@@ -2,7 +2,6 @@ package com.group2.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import com.group2.*;
 
 public class StartMenuGUI extends JFrame {
     //Instance Variables
@@ -45,5 +44,6 @@ public class StartMenuGUI extends JFrame {
     }
 
     //Methods
+
 
 }
