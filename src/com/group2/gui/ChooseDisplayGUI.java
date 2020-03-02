@@ -1,6 +1,7 @@
+package com.group2.gui;
+
 import javax.swing.*;
 import java.awt.*;
-import com.group2.startingstoppinggame.*;
 
 public class ChooseDisplayGUI extends JFrame {
     //Instance Variables
@@ -11,7 +12,7 @@ public class ChooseDisplayGUI extends JFrame {
 
 
     //Constructor
-    public ChooseDisplayGUI{
+    public ChooseDisplayGUI(){
         super();
 
         mainPane = getContentPane();
