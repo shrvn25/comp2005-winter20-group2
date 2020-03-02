@@ -1,6 +1,6 @@
 package com.group2;
 
-import com.group2.startingstoppinggame.StartMenuGUI;
+import com.group2.gui.StartMenuGUI;
 
 public class Main {
 
