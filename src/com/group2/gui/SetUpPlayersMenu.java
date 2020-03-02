@@ -14,4 +14,13 @@ public class SetUpPlayersMenu extends JFrame {
         super();
 
     }
+    //TODO Make colour drop down list.
+    //TODO Connect symbols to players.
+    //TODO Placeholders to put in Player's Names
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+    //TODO
+
 }
