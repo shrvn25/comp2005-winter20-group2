@@ -1,6 +1,11 @@
+package com.group2;
 
-//INSTANCE VARIABLES
+import com.group2.startingstoppinggame.StartMenuGUI;
 
-//CONSTRUCTOR
+public class Main {
 
-//METHODS
+    public static void main(String[] args) {
+
+        StartMenuGUI newStartMenu = new StartMenuGUI();
+    }
+}
