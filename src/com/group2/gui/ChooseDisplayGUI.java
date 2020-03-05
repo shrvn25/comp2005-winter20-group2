@@ -2,8 +2,6 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
 
 public class ChooseDisplayGUI extends JFrame{
     //Instance Variables
@@ -22,7 +20,9 @@ public class ChooseDisplayGUI extends JFrame{
         mainPane = getContentPane();
         mainPane.setPreferredSize(new Dimension(500,500));
         mainPane.setLayout(new GridLayout(5,1));
-        
+
+
+        //
         
 
         //Board Style
