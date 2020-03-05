@@ -1,8 +1,17 @@
-package com.group2.gui;
+package gui;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+//import com.group2.gui.GridSquare;
+/*
+impo com.group2.gui.GridSquare;
+
+packagimport com.group2.gui.GridSquare;
+
+com.group2.gui.GridSquare; */
 
 
 public class GameBoard extends JFrame implements ActionListener
@@ -17,7 +26,7 @@ public class GameBoard extends JFrame implements ActionListener
     private JPanel topPanel, bottomPanel;	// top and bottom panels in the main window
     private JLabel topLabel;				// a text label to appear in the top panel
     private JButton topButton;				// a 'reset' button to appear in the top panel
-    private GridSquare [][] gridSquares;	// squares to appear in grid formation in the bottom panel
+    private gui.GridSquare[][] gridSquares;	// squares to appear in grid formation in the bottom panel
     private int x,y;						// the size of the grid
 
     /*
@@ -53,12 +62,12 @@ public class GameBoard extends JFrame implements ActionListener
 
         // for the bottom panel:
         // create the buttons and add them to the grid
-        gridSquares = new GridSquare [x][y];
+        gridSquares = new gui.GridSquare[x][y];
         for ( int column = 0; column < x; column ++)
         {
             for ( int row = 0; row < y; row ++)
             {
-                gridSquares [column][row] = new GridSquare( x,y);
+                gridSquares [column][row] = new gui.GridSquare( x,y);
                 gridSquares [column][row].setSize( 20, 20);
                 gridSquares [column][row].setColor( column + row);
 
@@ -96,9 +105,9 @@ public class GameBoard extends JFrame implements ActionListener
          */
 
         // if a gridsquare is selected then switch its color
-        if ( selected instanceof GridSquare)
+        if ( selected instanceof gui.GridSquare)
         {
-            ((GridSquare) selected).switchColor();
+            ((gui.GridSquare) selected).switchColor();
         }
 
         // if resetting the squares' colours is requested then do so

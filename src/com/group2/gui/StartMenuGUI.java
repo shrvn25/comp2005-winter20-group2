@@ -1,7 +1,5 @@
 package gui;
 
-import com.group2.gui.GameBoard;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -88,7 +86,7 @@ public class StartMenuGUI extends JFrame implements ActionListener{
         }
         else if (x == loadOldGameButton){
             super.dispose();
-            GameBoard newGameBoard = new GameBoard(16,16);
+            gui.GameBoard newGameBoard = new gui.GameBoard(16,16);
         }
        
     }
