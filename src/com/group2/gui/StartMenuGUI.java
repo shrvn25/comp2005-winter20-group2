@@ -9,10 +9,12 @@ import gui.ChooseDisplayGUI;
 public class StartMenuGUI extends JFrame implements ActionListener{
     //Instance Variables
     private Container mainPane;
-    private JButton startNewGameButton, loadSavedGameButton;
+    private JButton startNewGameButton;
     private JPanel buttonPanel, informationPanel;
-    private JLabel infoMessage;
-
+    private JLabel infoMessage ;
+   
+  
+    
 
     //Constructor
     public StartMenuGUI(){
@@ -23,26 +25,34 @@ public class StartMenuGUI extends JFrame implements ActionListener{
         mainPane.setLayout(new BorderLayout());
         
 
-        //Make Buttons
+        //Make Buttons  
         startNewGameButton = new JButton("START NEW GAME");
-        loadSavedGameButton = new JButton("LOAD SAVED GAME");
+       
+
+     
+
+        
 
         //TODO Add listeners to buttons
         
         startNewGameButton.addActionListener(this);
-        loadSavedGameButton.addActionListener(this);
-        //Make the information label
+       
+      
+
+
+        //Make the information panel
         infoMessage = new JLabel("Welcome to Ricochet Robots!");
         informationPanel = new JPanel();
         informationPanel.add(infoMessage);
         mainPane.add(informationPanel, BorderLayout.NORTH);
+
 
         //Make the button label
         buttonPanel = new JPanel();
         
         buttonPanel.setLayout(new GridLayout(1, 2));
         buttonPanel.add(startNewGameButton);
-        buttonPanel.add(loadSavedGameButton);
+        
         mainPane.add(buttonPanel, BorderLayout.SOUTH);
 
 
@@ -59,9 +69,7 @@ public class StartMenuGUI extends JFrame implements ActionListener{
             ChooseDisplayGUI newChooseDisplayGUI= new ChooseDisplayGUI();
 
         }
-        else if(x== loadSavedGameButton){
-
-        }
+       
     }
 
     //Methods
