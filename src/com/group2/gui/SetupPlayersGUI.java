@@ -17,6 +17,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
     private JRadioButton simpleBoardRadioButton, complexBoardRadioButton, easy, hard;
     private ButtonGroup boardTypes, difficultyRadioButtons;
     private JComboBox<String> player2ComboBox, player3ComboBox, player4ComboBox;
+    private GameSettings newGameSettings;
 
 
     //Constructor
@@ -24,7 +25,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
 
         //First create the GameSettings object so it can record stuff.
 
-        GameSettings newGameSettings = new GameSettings(); //The default is all human players, easy mode and simple board.
+        newGameSettings = new GameSettings(); //The default is all human players, easy mode and simple board.
         
         //getContentPane().setBackground(Color.CYAN);//Can change colour later.
         mainPane = getContentPane();
@@ -82,7 +83,23 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
 
         //Add Action Listeners to this JComboBoxes //TODO THIS RIGHT SPOT BEFORE SETSELECTEDINDEX?
 
-        player2ComboBox
+        player2ComboBox.addActionListener(this);
+        player3ComboBox.addActionListener(this);
+        player4ComboBox.addActionListener(this);
+
+                /*new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                JComboBox player2ComboBoxSource = (JComboBox) event.getSource();
+
+
+
+                String comboBoxSelection = String.valueOf()
+            }
+        })
+
+            /*if (e == 0) {newGameSettings.setPlayer2PlayerType(0);}
+                                                 else if (e == 1) {newGameSettings.setPlayer2PlayerType(1);}
+                                                               });*/
 
 
         player2ComboBox.setSelectedIndex(0);//Changed to HUMAN
@@ -154,6 +171,37 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
             super.dispose();
             gui.GameBoard gameboard= new gui.GameBoard(16,16);
 
+        }
+
+
+        if (event == player2ComboBox){
+            int player2Choice = (int) player2ComboBox.getSelectedIndex();
+            if (player2Choice == 0){
+                newGameSettings.setPlayer2PlayerType(0); //Human
+            }
+            else if (player2Choice == 1){
+                newGameSettings.setPlayer2PlayerType(1); //Computer
+            }
+        }
+
+        if (event == player3ComboBox){
+            int player3Choice = (int) player3ComboBox.getSelectedIndex();
+            if (player3Choice == 0){
+                newGameSettings.setPlayer3PlayerType(0); //Human
+            }
+            else if (player3Choice == 1){
+                newGameSettings.setPlayer3PlayerType(1); //Computer
+            }
+        }
+
+        if (event == player4ComboBox){
+            int player4Choice = (int) player4ComboBox.getSelectedIndex();
+            if (player4Choice == 0){
+                newGameSettings.setPlayer4PlayerType(0); //Human
+            }
+            else if (player4Choice == 1){
+                newGameSettings.setPlayer4PlayerType(1); //Computer
+            }
         }
 
 
