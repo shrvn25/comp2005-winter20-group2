@@ -1,6 +1,6 @@
 package gui;
 
-import com.group2.gui.GameSettings;
+import com.group2.gui.ChooseBoardGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
     private JRadioButton simpleBoardRadioButton, complexBoardRadioButton, easyDifficultyRadioButton, hardDifficultyRadioButton;
     private ButtonGroup boardTypes, difficultyRadioButtons;
     private JComboBox<String> player2ComboBox, player3ComboBox, player4ComboBox;
-    private GameSettings newGameSettings;
+    private ChooseBoardGUI newChooseBoardGUI;
 
 
     //Constructor
@@ -25,7 +25,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
 
         //First create the GameSettings object so it can record stuff.
 
-        newGameSettings = new GameSettings(); //The default is all human players, easy mode and simple board.
+        newChooseBoardGUI = new ChooseBoardGUI();
         
         //getContentPane().setBackground(Color.CYAN);//Can change colour later.
         mainPane = getContentPane();
@@ -41,8 +41,8 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         complexBoardRadioButton = new JRadioButton("Complex");
 
         //TODO Add listeners to buttons
-        simpleBoardRadioButton.addActionListener( e -> newGameSettings.setBoardType(0));
-        complexBoardRadioButton.addActionListener( e -> newGameSettings.setBoardType(1));
+        simpleBoardRadioButton.addActionListener( e -> newChooseBoardGUI.getGameSettingsObject().setBoardType(0));
+        complexBoardRadioButton.addActionListener( e -> newChooseBoardGUI.getGameSettingsObject().setBoardType(1));
 
         
       
@@ -142,8 +142,8 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         hardDifficultyRadioButton = new JRadioButton("Hard");
 
         //Add action listeners to difficulty buttons
-        easyDifficultyRadioButton.addActionListener(e -> newGameSettings.setDifficulty(0));
-        hardDifficultyRadioButton.addActionListener(e -> newGameSettings.setDifficulty(1));
+        easyDifficultyRadioButton.addActionListener(e -> newChooseBoardGUI.getGameSettingsObject().setDifficulty(0));
+        hardDifficultyRadioButton.addActionListener(e -> newChooseBoardGUI.getGameSettingsObject().setDifficulty(1));
 
 
         difficultyRadioButtons.add(easyDifficultyRadioButton);
@@ -183,30 +183,30 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         if (event == player2ComboBox){
             int player2Choice = (int) player2ComboBox.getSelectedIndex();
             if (player2Choice == 0){
-                newGameSettings.setPlayer2PlayerType(0); //Human
+                newChooseBoardGUI.getGameSettingsObject().setPlayer2PlayerType(0); //Human
             }
             else if (player2Choice == 1){
-                newGameSettings.setPlayer2PlayerType(1); //Computer
+                newChooseBoardGUI.getGameSettingsObject().setPlayer2PlayerType(1); //Computer
             }
         }
 
         if (event == player3ComboBox){
             int player3Choice = (int) player3ComboBox.getSelectedIndex();
             if (player3Choice == 0){
-                newGameSettings.setPlayer3PlayerType(0); //Human
+                newChooseBoardGUI.getGameSettingsObject().setPlayer3PlayerType(0); //Human
             }
             else if (player3Choice == 1){
-                newGameSettings.setPlayer3PlayerType(1); //Computer
+                newChooseBoardGUI.getGameSettingsObject().setPlayer3PlayerType(1); //Computer
             }
         }
 
         if (event == player4ComboBox){
             int player4Choice = (int) player4ComboBox.getSelectedIndex();
             if (player4Choice == 0){
-                newGameSettings.setPlayer4PlayerType(0); //Human
+                newChooseBoardGUI.getGameSettingsObject().setPlayer4PlayerType(0); //Human
             }
             else if (player4Choice == 1){
-                newGameSettings.setPlayer4PlayerType(1); //Computer
+                newChooseBoardGUI.getGameSettingsObject().setPlayer4PlayerType(1); //Computer
             }
         }
 
