@@ -14,7 +14,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
     private JButton startButton;
     private JPanel buttonPanel, informationPanel, playerPanel, boardPanel, difficultyPanel;
     private JLabel infoMessage, difficulty, board,humanPlayer, player1, player2, player3, player4;
-    private JRadioButton simpleBoardRadioButton, complexBoardRadioButton, easy, hard;
+    private JRadioButton simpleBoardRadioButton, complexBoardRadioButton, easyDifficultyRadioButton, hardDifficultyRadioButton;
     private ButtonGroup boardTypes, difficultyRadioButtons;
     private JComboBox<String> player2ComboBox, player3ComboBox, player4ComboBox;
     private GameSettings newGameSettings;
@@ -138,13 +138,13 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         //difficultyPanel.setBackground(Color.YELLOW);//Change colour later.
         difficultyRadioButtons= new ButtonGroup();
         difficulty= new JLabel("Please select the difficulty of the computer player (if any): ");
-        easy= new JRadioButton("Easy");
-        hard= new JRadioButton("Hard");
-        difficultyRadioButtons.add(easy);
-        difficultyRadioButtons.add(hard);
+        easyDifficultyRadioButton = new JRadioButton("Easy");
+        hardDifficultyRadioButton = new JRadioButton("Hard");
+        difficultyRadioButtons.add(easyDifficultyRadioButton);
+        difficultyRadioButtons.add(hardDifficultyRadioButton);
         difficultyPanel.add(difficulty);
-        difficultyPanel.add(easy);
-        difficultyPanel.add(hard);
+        difficultyPanel.add(easyDifficultyRadioButton);
+        difficultyPanel.add(hardDifficultyRadioButton);
 
         mainPane.add(difficultyPanel);
         
