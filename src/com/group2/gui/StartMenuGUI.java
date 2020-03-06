@@ -81,7 +81,7 @@ public class StartMenuGUI extends JFrame implements ActionListener{
         Object x= e.getSource();
         if(x== startNewGameButton){
             super.dispose();
-            gui.ChooseDisplayGUI newChooseDisplayGUI= new gui.ChooseDisplayGUI();
+            gui.SetupPlayersGUI newSetupPlayersGUI = new gui.SetupPlayersGUI();
 
         }
         else if (x == loadOldGameButton){

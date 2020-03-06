@@ -1,6 +1,5 @@
 package group2;
 
-import gui.ChooseDisplayGUI;
 import gui.StartMenuGUI;
 
 public class Main {

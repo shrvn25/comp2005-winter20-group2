@@ -2,13 +2,11 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-
-import java.awt.event.*;
-import java.util.*;
-import java.io.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
-public class ChooseDisplayGUI extends JFrame implements ActionListener{
+public class SetupPlayersGUI extends JFrame implements ActionListener{
     //Instance Variables
     private Container mainPane;
     private JButton startButton;
@@ -20,7 +18,7 @@ public class ChooseDisplayGUI extends JFrame implements ActionListener{
 
 
     //Constructor
-    public ChooseDisplayGUI(){
+    public SetupPlayersGUI(){
         
         getContentPane().setBackground(Color.CYAN);
         mainPane = getContentPane();
@@ -140,7 +138,7 @@ public class ChooseDisplayGUI extends JFrame implements ActionListener{
         Object event= e.getSource();
         if(event== startButton){
             super.dispose();
-            GameBoard gameboard= new GameBoard(16,16);
+            gui.GameBoard gameboard= new gui.GameBoard(16,16);
 
         }
        
