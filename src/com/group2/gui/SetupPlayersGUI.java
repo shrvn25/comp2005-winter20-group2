@@ -169,7 +169,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         
     }
 
-    //Methods
+    //Methods Test
     
     public void actionPerformed(ActionEvent e){
         Object event= e.getSource();
