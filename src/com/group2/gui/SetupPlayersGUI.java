@@ -140,6 +140,12 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         difficulty= new JLabel("Please select the difficulty of the computer player (if any): ");
         easyDifficultyRadioButton = new JRadioButton("Easy");
         hardDifficultyRadioButton = new JRadioButton("Hard");
+
+        //Add action listeners to difficulty buttons
+        easyDifficultyRadioButton.addActionListener(e -> newGameSettings.setDifficulty(0));
+        hardDifficultyRadioButton.addActionListener(e -> newGameSettings.setDifficulty(1));
+
+
         difficultyRadioButtons.add(easyDifficultyRadioButton);
         difficultyRadioButtons.add(hardDifficultyRadioButton);
         difficultyPanel.add(difficulty);
@@ -203,6 +209,8 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
                 newGameSettings.setPlayer4PlayerType(1); //Computer
             }
         }
+
+
 
 
        
