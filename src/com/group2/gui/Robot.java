@@ -2,7 +2,7 @@ package com.group2.gui;
 
 import java.awt.*;
 
-public class RobotPieces {
+public class Robot {
 
     private static final Color[] robotColours = {
             new Color(245, 99, 99), //Color.RED,
