@@ -20,7 +20,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
     //Constructor
     public SetupPlayersGUI(){
         
-        getContentPane().setBackground(Color.CYAN);
+        //getContentPane().setBackground(Color.CYAN);//Can change colour later.
         mainPane = getContentPane();
         mainPane.setPreferredSize(new Dimension(1000,1000));
         mainPane.setLayout(new GridLayout(5,1));
@@ -45,8 +45,8 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
 
         //Making the board panel
         boardPanel= new JPanel();
-        boardPanel.setBackground(Color.CYAN);
-        board= new JLabel("Please Choose a board type: ");
+        //boardPanel.setBackground(Color.CYAN);//Can change colour later.
+        board= new JLabel("Please choose a board type: ");
         boardTypes= new ButtonGroup();
         
        
@@ -61,7 +61,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         
 
         playerPanel= new JPanel(new GridLayout(6,2));
-        playerPanel.setBackground(Color.YELLOW);
+        //playerPanel.setBackground(Color.YELLOW);//Change colour later.
         playerList= new JComboBox<String>();
         playerList.addItem("Human Player");
         playerList.addItem("Computer Player");
@@ -80,11 +80,11 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         playerList3.setSelectedIndex(1);
 
         //Labels for the Number of Players
-        player1= new JLabel("Player 1:     Red Robot");
+        player1= new JLabel("Player 1:     Red Robot with Star");
         humanPlayer= new JLabel("Human Player");
-        player2= new JLabel("Player 2:     Green Square");
-        player3= new JLabel("Player 3:     Yellow Circle");
-        player4= new JLabel("Player 4:     Blue Moon");
+        player2= new JLabel("Player 2:     Green Robot with Square");
+        player3= new JLabel("Player 3:     Yellow Robot with Circle");
+        player4= new JLabel("Player 4:     Blue Robot with Half Moon");
         
 
         //Adding all the components
@@ -104,7 +104,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
           
         //Make the Difficulty panel
         difficultyPanel= new JPanel();
-        difficultyPanel.setBackground(Color.YELLOW);
+        //difficultyPanel.setBackground(Color.YELLOW);//Change colour later.
         difficultyRadioButtons= new ButtonGroup();
         difficulty= new JLabel("Please select the difficulty of the computer player (if any): ");
         easy= new JRadioButton("Easy");
@@ -119,7 +119,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         
         //Make the button label
         buttonPanel = new JPanel();
-        buttonPanel.setBackground(Color.YELLOW);
+        //buttonPanel.setBackground(Color.YELLOW);//Change colour later.
         startButton= new JButton("Start");
         startButton.addActionListener(this);
         buttonPanel.add(startButton);
