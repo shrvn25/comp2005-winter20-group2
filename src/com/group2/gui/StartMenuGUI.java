@@ -2,14 +2,16 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import gui.ChooseDisplayGUI;
+//InputStream in = getClass().getResourceAsStream("/gui/images/guiImages/ricochetRobotsStartImage.jpeg");
+//TODO Is this needed for running in jar file?
 
 public class StartMenuGUI extends JFrame implements ActionListener{
     //Instance Variables
     private Container mainPane;
-    private JButton startNewGameButton;
+    private JButton startNewGameButton, loadOldGameButton;
     private JPanel buttonPanel, informationPanel;
     private JLabel infoMessage ;
    
@@ -23,20 +25,28 @@ public class StartMenuGUI extends JFrame implements ActionListener{
         mainPane = getContentPane();
         mainPane.setPreferredSize(new Dimension(500,500));
         mainPane.setLayout(new BorderLayout());
-        
 
-        //Make Buttons  
+
+        //Make Buttons
         startNewGameButton = new JButton("START NEW GAME");
-       
+        startNewGameButton.addActionListener(this);
 
-     
+        loadOldGameButton = new JButton("LOAD OLD GAME");
+        loadOldGameButton.addActionListener(this);
 
-        
+        //Make the button label
+        buttonPanel = new JPanel();
+
+        buttonPanel.setLayout(new GridLayout(1, 2));
+        buttonPanel.add(startNewGameButton);
+        buttonPanel.add(loadOldGameButton);
+
+
+
+        mainPane.add(buttonPanel, BorderLayout.SOUTH);
+
 
         //TODO Add listeners to buttons
-        
-        startNewGameButton.addActionListener(this);
-       
       
 
 
@@ -46,14 +56,18 @@ public class StartMenuGUI extends JFrame implements ActionListener{
         informationPanel.add(infoMessage);
         mainPane.add(informationPanel, BorderLayout.NORTH);
 
+        /*
 
-        //Make the button label
-        buttonPanel = new JPanel();
-        
-        buttonPanel.setLayout(new GridLayout(1, 2));
-        buttonPanel.add(startNewGameButton);
-        
-        mainPane.add(buttonPanel, BorderLayout.SOUTH);
+        //Add a Ricochet Robot Nice Start Image //TODO Add this later.
+
+        ImageIcon ricochetRobotStartImage = new ImageIcon("/gui/images/guiImages/ricochetRobotsStartImage.jpeg");
+        JLabel ricochetRobotStartLabel = new JLabel(ricochetRobotStartImage);
+        ricochetRobotStartLabel.setBounds(10, 10, 400, 400);//TODO Fix these dimensions.
+        ricochetRobotStartLabel.setVisible(true);
+
+        mainPane.add(ricochetRobotStartLabel, BorderLayout.CENTER); //Add to main pane
+  */
+
 
 
         //Pack and make visible
@@ -66,8 +80,13 @@ public class StartMenuGUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         Object x= e.getSource();
         if(x== startNewGameButton){
-            ChooseDisplayGUI newChooseDisplayGUI= new ChooseDisplayGUI();
+            super.dispose();
+            gui.SetupPlayersGUI newSetupPlayersGUI = new gui.SetupPlayersGUI();
 
+        }
+        else if (x == loadOldGameButton){
+            super.dispose();
+            gui.GameBoard newGameBoard = new gui.GameBoard(16,16);
         }
        
     }
