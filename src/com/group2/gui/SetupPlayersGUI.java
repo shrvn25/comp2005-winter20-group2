@@ -80,9 +80,9 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         playerList3.addItem("Computer Player");
 
 
-        playerList.setSelectedIndex(1);
-        playerList2.setSelectedIndex(1);
-        playerList3.setSelectedIndex(1);
+        playerList.setSelectedIndex(0);//Changed to HUMAN
+        playerList2.setSelectedIndex(0);//Changed to HUMAN
+        playerList3.setSelectedIndex(0);//Changed to HUMAN
 
         //Labels for the Number of Players
         player1= new JLabel("Player 1:     Red Robot with Star");
@@ -90,7 +90,9 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         player2= new JLabel("Player 2:     Green Robot with Square");
         player3= new JLabel("Player 3:     Yellow Robot with Circle");
         player4= new JLabel("Player 4:     Blue Robot with Half Moon");
-        
+
+        //Add Action Listeners to this selection
+
 
         //Adding all the components
         playerPanel.add(player1);
