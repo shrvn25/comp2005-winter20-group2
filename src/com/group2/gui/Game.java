@@ -1,10 +1,11 @@
-package com.group2.gui;
+package group2;
 
+import gui.StartMenuGUI;
 
 public class Game {
 
     public static void main(String[] args) {
 
-        gui.StartMenuGUI newStartMenu = new gui.StartMenuGUI();
+        StartMenuGUI newStartMenu = new StartMenuGUI();
     }
 }
