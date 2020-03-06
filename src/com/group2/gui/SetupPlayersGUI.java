@@ -14,7 +14,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
     private JButton startButton;
     private JPanel buttonPanel, informationPanel, playerPanel, boardPanel, difficultyPanel;
     private JLabel infoMessage, difficulty, board,humanPlayer, player1, player2, player3, player4;
-    private JRadioButton simple, complex, easy, hard;
+    private JRadioButton simpleBoardRadioButton, complexBoardRadioButton, easy, hard;
     private ButtonGroup boardTypes, difficultyRadioButtons;
     private JComboBox<String> playerList,playerList2,playerList3;
 
@@ -32,17 +32,16 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         mainPane.setLayout(new GridLayout(5,1));
 
 
-        //
+        //TODO change defaults to human player.
         
 
-        //Board Style
-        simple= new JRadioButton("Simple");
-        complex= new JRadioButton("Complex");
+        //Board Choice Buttons
+        simpleBoardRadioButton = new JRadioButton("Simple");
+        complexBoardRadioButton = new JRadioButton("Complex");
 
-    
-
-        
         //TODO Add listeners to buttons
+        simpleBoardRadioButton.addActionListener( e -> newGameSettings.setBoardType(0));
+        complexBoardRadioButton.addActionListener( e -> newGameSettings.setBoardType(1));
 
         
       
@@ -57,10 +56,10 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         
        
         boardPanel.add(board);
-        boardPanel.add(simple);
-        boardPanel.add(complex);
-        boardTypes.add(simple);
-        boardTypes.add(complex);
+        boardPanel.add(simpleBoardRadioButton);
+        boardPanel.add(complexBoardRadioButton);
+        boardTypes.add(simpleBoardRadioButton);
+        boardTypes.add(complexBoardRadioButton);
         mainPane.add(boardPanel);
 
         //Making the player panel
@@ -147,6 +146,8 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
             gui.GameBoard gameboard= new gui.GameBoard(16,16);
 
         }
+
+
        
     }
 
