@@ -16,7 +16,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
     private JLabel infoMessage, difficulty, board,humanPlayer, player1, player2, player3, player4;
     private JRadioButton simpleBoardRadioButton, complexBoardRadioButton, easy, hard;
     private ButtonGroup boardTypes, difficultyRadioButtons;
-    private JComboBox<String> playerList,playerList2,playerList3;
+    private JComboBox<String> player2ComboBox, player3ComboBox, player4ComboBox;
 
 
     //Constructor
@@ -67,22 +67,27 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
 
         playerPanel= new JPanel(new GridLayout(6,2));
         //playerPanel.setBackground(Color.YELLOW);//Change colour later.
-        playerList= new JComboBox<String>();
-        playerList.addItem("Human Player");
-        playerList.addItem("Computer Player");
-        
-        playerList2= new JComboBox<String>();
-        playerList2.addItem("Human Player");
-        playerList2.addItem("Computer Player");
-        
-        playerList3= new JComboBox<String>();
-        playerList3.addItem("Human Player");
-        playerList3.addItem("Computer Player");
+        player2ComboBox = new JComboBox<String>();
+        player2ComboBox.addItem("Human Player");
+        player2ComboBox.addItem("Computer Player");
 
 
-        playerList.setSelectedIndex(0);//Changed to HUMAN
-        playerList2.setSelectedIndex(0);//Changed to HUMAN
-        playerList3.setSelectedIndex(0);//Changed to HUMAN
+        player3ComboBox = new JComboBox<String>();
+        player3ComboBox.addItem("Human Player");
+        player3ComboBox.addItem("Computer Player");
+        
+        player4ComboBox = new JComboBox<String>();
+        player4ComboBox.addItem("Human Player");
+        player4ComboBox.addItem("Computer Player");
+
+        //Add Action Listeners to this JComboBoxes //TODO THIS RIGHT SPOT BEFORE SETSELECTEDINDEX?
+
+        player2ComboBox
+
+
+        player2ComboBox.setSelectedIndex(0);//Changed to HUMAN
+        player3ComboBox.setSelectedIndex(0);//Changed to HUMAN
+        player4ComboBox.setSelectedIndex(0);//Changed to HUMAN
 
         //Labels for the Number of Players
         player1= new JLabel("Player 1:     Red Robot with Star");
@@ -91,18 +96,20 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         player3= new JLabel("Player 3:     Yellow Robot with Circle");
         player4= new JLabel("Player 4:     Blue Robot with Half Moon");
 
-        //Add Action Listeners to this selection
+
+
+
 
 
         //Adding all the components
         playerPanel.add(player1);
         playerPanel.add(humanPlayer);
         playerPanel.add(player2);
-        playerPanel.add(playerList);
+        playerPanel.add(player2ComboBox);
         playerPanel.add(player3);
-        playerPanel.add(playerList2);
+        playerPanel.add(player3ComboBox);
         playerPanel.add(player4);
-        playerPanel.add(playerList3);
+        playerPanel.add(player4ComboBox);
 
 
         mainPane.add(playerPanel);
