@@ -1,5 +1,7 @@
 package gui;
 
+import com.group2.gui.GameSettings;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +21,10 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
 
     //Constructor
     public SetupPlayersGUI(){
+
+        //First create the GameSettings object so it can record stuff.
+
+        GameSettings newGameSettings = new GameSettings(); //The default is all human players, easy mode and simple board.
         
         //getContentPane().setBackground(Color.CYAN);//Can change colour later.
         mainPane = getContentPane();
