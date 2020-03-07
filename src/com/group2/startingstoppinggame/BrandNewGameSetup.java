@@ -166,7 +166,7 @@ public class BrandNewGameSetup {
 
         //TODO FInish creating and giving current gameplay the stuff.
 
-        theCurrentGameplay = newCurrentGamePlay(playerArray, robotArray, arrayOfAllTargetChipsInGame, );
+        theCurrentGameplay = newCurrentGamePlay(playerArray, arrayOfAllTargetChipsInGame, board);
 
     }
 

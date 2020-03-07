@@ -1,6 +1,6 @@
 package com.group2.physicalgameobjects;
 
-import java.awt.*;
+import java.util.ArrayList;
 
 public class Player {
 //INSTANCE VARIABLES
@@ -12,6 +12,11 @@ public class Player {
     int playerID;
     int tokenCount;
     Robot playersRobot;
+
+    ArrayList<TargetChip> playersCollectedTargetChips;
+
+
+
     //ArrayList<> //TODO Set up list of movements later
 
 //CONSTRUCTOR
@@ -20,6 +25,7 @@ public Player(){
     this.tokenCount = 0;
     this.playersRobot = new Robot();
     this.playerID = -1;
+    this.playersCollectedTargetChips = new ArrayList<TargetChip>();
 }
 //METHODS
 
@@ -62,6 +68,16 @@ public Player(){
     public Robot getPlayersRobot(){
         return this.playersRobot;
     }
+
+    public void addTargetChipToPlayersCollection(TargetChip wonTargetChip){
+        this.playersCollectedTargetChips.add(wonTargetChip);
+    }
+
+    public int getNumberOfTargetChipsPlayerHasWon(){
+        return this.playersCollectedTargetChips.size();
+    }
+
+
 
 
 
