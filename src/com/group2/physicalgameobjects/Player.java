@@ -4,7 +4,11 @@ import java.awt.*;
 
 public class Player {
 //INSTANCE VARIABLES
-    String name;
+
+    String playerType;
+    String playerName;
+    int location;
+
     int playerID;
     int tokenCount;
     Robot playersRobot;
@@ -12,12 +16,40 @@ public class Player {
 
 //CONSTRUCTOR
 public Player(){
-    this.name = "";
+    this.playerName = "";
     this.tokenCount = 0;
     this.playersRobot = new Robot();
     this.playerID = -1;
 }
 //METHODS
+
+    public String getPlayerType(){
+        return this.playerType;
+    }
+
+    public void setPlayerType(String newPlayerType){
+        this.playerType = newPlayerType;
+    }
+
+    public String getPlayerName(){
+        return this.playerName;
+    }
+
+    public void setPlayerName(String newPlayerName){
+        this.playerName = newPlayerName;
+    }
+
+    public takeTurn(){
+
+    }
+
+
+
+
+
+
+
+/* //Leaving out for now
     public Robot getRobot(){
         return this.playersRobot;
     }
@@ -26,13 +58,7 @@ public Player(){
         this.playersRobot = newRobot;
     }
 
-    public String getName(){
-        return this.name;
-    }
 
-    public void changeName(String newName){
-        this.name = newName;
-    }
 
     public void changePlayerID( int newID){
         this.playerID = newID;
@@ -42,5 +68,5 @@ public Player(){
     public void addOneTokenToCount(){
         this.tokenCount += 1;
     }
-
+*/
 }
