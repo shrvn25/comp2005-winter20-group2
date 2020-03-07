@@ -1,6 +1,25 @@
+package com.group2.physicalgameobjects;
 
-//INSTANCE VARIABLES
+public class Timer {
 
-//CONSTRUCTOR
+    int timer;
+    int timeRemaining;
 
-//METHODS
+    public Timer(){
+
+    }
+
+    public void startTime(){
+
+    }
+
+    public String getTimeRemaining(){
+
+    }
+
+    public void setTimeRemaining(){
+
+    }
+
+
+}
