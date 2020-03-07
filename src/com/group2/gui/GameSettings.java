@@ -42,4 +42,60 @@ public class GameSettings {
         this.player4PlayerType = newPlayerType;
     }
 
+    //Getters //TODO Change integers to strings reading what board types and difficulties are.
+
+    public boolean recordedBoardTypeIsSimple(){
+        if (this.boardType == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean recordedAllComputerDifficultyIsEasy(){
+        if (this.difficulty == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean player1PlayerTypeisHuman(){
+        if (this.player1PlayerType == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean player2PlayerTypeisHuman(){
+        if (this.player2PlayerType == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean player3PlayerTypeisHuman(){
+        if (this.player3PlayerType == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean player4PlayerTypeisHuman(){
+        if (this.player4PlayerType == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }

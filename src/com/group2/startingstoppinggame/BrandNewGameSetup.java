@@ -1,7 +1,9 @@
 package com.group2.startingstoppinggame;
 
+import com.group2.gui.GameSettings;
 import com.group2.physicalgameobjects.Player;
 import com.group2.physicalgameobjects.Robot;
+import com.group2.*;
 
 
 public class BrandNewGameSetup {
@@ -14,7 +16,7 @@ public class BrandNewGameSetup {
 
 
 
-    public BrandNewGameSetup(){
+    public BrandNewGameSetup(GameSettings theRecordedGameSettings){
         //First create arrays to hold all players and robots
         playerArray = new Player[4];
         robotArray = new Robot[4];
@@ -26,11 +28,25 @@ public class BrandNewGameSetup {
         player3 = new Player();
         player4 = new Player();
 
+        //Get all of the players' recorded type, and then
+        //change the player type of these players according to what is recorded in the GameSettings class.
+
+        int player1sRecordedType = theRecordedGameSettings.getRecordedPlayer1PlayerType();
+        int player2sRecordedType = theRecordedGameSettings.getRecordedPlayer2PlayerType();
+        int player3sRecordedType = theRecordedGameSettings.getRecordedPlayer3PlayerType();
+        int player4sRecordedType = theRecordedGameSettings.getRecordedPlayer4PlayerType();
+
+        if .makePlayerHuman()
+        makePlayerComputer();
+
         //Then put these players into the player array.
         playerArray[0] = player1;
         playerArray[1] = player2;
         playerArray[2] = player3;
         playerArray[3] = player4;
+
+
+
 
         //Next create robot objects.
         redStarRobot = new Robot("RED", "STAR");
