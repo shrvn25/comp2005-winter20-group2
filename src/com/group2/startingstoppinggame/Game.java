@@ -1,4 +1,4 @@
-package group2;
+package com.group2.startingstoppinggame;
 
 import gui.StartMenuGUI;
 
