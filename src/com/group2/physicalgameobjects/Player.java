@@ -57,8 +57,8 @@ public Player(){
 
     }
 
-    public getPlayersLocation(){
-        if ()
+    public getPlayersCurrentLocation(){ //TODO RETURN AN ARRAY HERE OF X AND Y COORDINATES
+
     }
 
     public void setPlayersRobot(Robot playersNewRobot){
