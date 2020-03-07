@@ -36,7 +36,28 @@ public class BrandNewGameSetup {
         int player3sRecordedType = theRecordedGameSettings.getRecordedPlayer3PlayerType();
         int player4sRecordedType = theRecordedGameSettings.getRecordedPlayer4PlayerType();
 
-        if .makePlayerHuman()
+        if (theRecordedGameSettings.player1PlayerTypeisHuman()){
+            player1.setPlayerTypeToHuman();
+        }
+        else{
+            player1.setPlayerTypeToComputer();
+        }
+
+        if (theRecordedGameSettings.player2PlayerTypeisHuman()){
+            player2.setPlayerTypeToHuman();
+        }
+        else{
+            player2.setPlayerTypeToComputer();
+        }
+
+        if (theRecordedGameSettings.player2PlayerTypeisHuman()){
+            player2.setPlayerTypeToHuman();
+        }
+        else{
+            player2.setPlayerTypeToComputer();
+        }
+
+
         makePlayerComputer();
 
         //Then put these players into the player array.

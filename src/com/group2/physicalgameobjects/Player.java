@@ -27,8 +27,16 @@ public Player(){
         return this.playerType;
     }
 
-    public void setPlayerType(String newPlayerType){
+    /*public void setPlayerType(String newPlayerType){
         this.playerType = newPlayerType;
+    }*/
+
+    public void setPlayerTypeToHuman(){
+        this.playerType = "HUMAN";
+    }
+
+    public void setPlayerTypeToComputer(){
+        this.playerType = "COMPUTER";
     }
 
     public String getPlayerName(){
