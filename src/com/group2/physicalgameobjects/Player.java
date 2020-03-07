@@ -51,6 +51,18 @@ public Player(){
 
     }
 
+    public getPlayersLocation(){
+        if ()
+    }
+
+    public void setPlayersRobot(Robot playersNewRobot){
+        this.playersRobot = playersNewRobot;
+    }
+
+    public Robot getPlayersRobot(){
+        return this.playersRobot;
+    }
+
 
 
 

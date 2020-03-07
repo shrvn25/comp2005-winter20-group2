@@ -1,12 +1,12 @@
 package com.group2.physicalgameobjects;
 
-public class Token {
+public class TargetChip {
 
     String color;
     String shape;
     int location;
 
-    public Token(String newColor, String newShape){ //TODO I updated signature compared to class diagram.
+    public TargetChip(String newColor, String newShape){ //TODO I updated signature compared to class diagram.
         this.color = newColor;
         this.shape = newShape;
     }
@@ -26,5 +26,7 @@ public class Token {
     public void setShape(String newShape){
         this.shape = newShape;
     }
+
+
 
 }
