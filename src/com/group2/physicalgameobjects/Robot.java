@@ -1,4 +1,4 @@
-package com.group2.gui;
+package com.group2.physicalgameobjects;
 
 public class Robot {
     String color;
