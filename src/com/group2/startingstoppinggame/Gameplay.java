@@ -6,7 +6,7 @@ import com.group2.physicalgameobjects.Robot;
 import com.group2.physicalgameobjects.TargetChip;
 
 
-public class BrandNewGameSetup {
+public class Gameplay {
     Player player1, player2, player3, player4, player5;
     Robot redStarRobot, greenSquareRobot, yellowCircleRobot, blueHalfMoonRobot;
     TargetChip redStarTargetChip, redCircleTargetChip, redSquareTargetChip, redHalfMoonTargetChip;
@@ -14,6 +14,7 @@ public class BrandNewGameSetup {
     TargetChip yellowStarTargetChip, yellowCircleTargetChip, yellowSquareTargetChip, yellowHalfMoonTargetChip;
     TargetChip blueStarTargetChip, blueCircleTargetChip, blueSquareTargetChip, blueHalfMoonTargetChip;
     TargetChip multicoloredTargetChip;
+    GameSettings theRecordedGameSettings;
     CurrentGamePlay theCurrentGameplay;
 
     Player playerArray[];
@@ -24,10 +25,48 @@ public class BrandNewGameSetup {
 
 
 
-    public BrandNewGameSetup(GameSettings theRecordedGameSettings){
+    public Gameplay(GameSettings newGameSettings){
+        this.theRecordedGameSettings = newGameSettings;
+        //First set up the game //TODO if this isn't a new game you load old game here and skip this.
+        initializeBrandNewGameObjects();
+
+
+
+
+
+    }
+
+
+
+    private void initializeBrandNewGameObjects() {
+        createAllRobots();
+        createAllNewPlayers();
+        createAllTokens();
+        createTheSelectedBoard();
+    }
+
+
+    private void createAllRobots(){
+        //First make the robot array
+        robotArray = new Robot[4];
+
+        //Next create robot objects.
+        redStarRobot = new Robot("RED", "STAR");
+        greenSquareRobot = new Robot("GREEN", "SQUARE");
+        yellowCircleRobot = new Robot("YELLOW", "CIRCLE");
+        blueHalfMoonRobot = new Robot("BLUE", "HALFMOON");
+
+        //Set up the locations of all robots for each player
+
+        //Then put these robots into the robot array.
+        robotArray[0] = redStarRobot;
+        robotArray[1] = greenSquareRobot;
+        robotArray[2] = yellowCircleRobot;
+        robotArray[3] = blueHalfMoonRobot;
+    }
+    private void createAllNewPlayers(){
         //First create arrays to hold all players and robots
         playerArray = new Player[4];
-        robotArray = new Robot[4];
 
         //First create Player Objects
 
@@ -69,6 +108,21 @@ public class BrandNewGameSetup {
             player4.setPlayerTypeToComputer();
         }
 
+
+        //Then put these players into the player array.
+        playerArray[0] = player1;
+        playerArray[1] = player2;
+        playerArray[2] = player3;
+        playerArray[3] = player4;
+
+        //Hook up players with their robots //TODO This may need to be fixed.
+        player1.setPlayersRobot(robotArray[0]);//Player 1 is always with the red star robot
+        player2.setPlayersRobot(robotArray[1]);//Player 2 is always with the green star robot
+        player3.setPlayersRobot(robotArray[2]);//Player 3 is always with the yellow circle robot
+        player4.setPlayersRobot(robotArray[3]);//Player 4 is always with the blue half moon robot
+
+    }
+    private void createAllTokens(){
         //Generate the array of all tokens in the game //TODO token to targetChips
         //TODO Are these target chips designed correctly?
 
@@ -97,7 +151,7 @@ public class BrandNewGameSetup {
 
 
         //Declare array for all chips, and add all these chip objects to this array.
-        arrayOfAllTargetChipsInGame[17];
+        arrayOfAllTargetChipsInGame = new TargetChip[17];
 
         arrayOfAllTargetChipsInGame[0] = redStarTargetChip;
         arrayOfAllTargetChipsInGame[1] = redCircleTargetChip;
@@ -131,56 +185,24 @@ public class BrandNewGameSetup {
         }//TODO Does multicolored vortex chip need to be in list?
 
 
-        //Then put these players into the player array.
-        playerArray[0] = player1;
-        playerArray[1] = player2;
-        playerArray[2] = player3;
-        playerArray[3] = player4;
-
-
-
-
-        //Next create robot objects.
-        redStarRobot = new Robot("RED", "STAR");
-        greenSquareRobot = new Robot("GREEN", "SQUARE");
-        yellowCircleRobot = new Robot("YELLOW", "CIRCLE");
-        blueHalfMoonRobot = new Robot("BLUE", "HALFMOON");
-
-        //Set up the locations of all robots for each player
-
-        //Then put these robots into the robot array.
-        robotArray[0] = redStarRobot;
-        robotArray[1] = greenSquareRobot;
-        robotArray[2] = yellowCircleRobot;
-        robotArray[3] = blueHalfMoonRobot;
-
-        //Hook up players with their robots //TODO This may need to be fixed.
-        player1.setPlayersRobot(robotArray[0]);//Player 1 is always with the red star robot
-        player2.setPlayersRobot(robotArray[1]);//Player 2 is always with the green star robot
-        player3.setPlayersRobot(robotArray[2]);//Player 3 is always with the yellow circle robot
-        player4.setPlayersRobot(robotArray[3]);//Player 4 is always with the blue half moon robot
-
-
-        //FINALLY, pass the arrays of players, the robots, the random tokens to pull from, and the board,
-        //to the object that will deal with the current gameplay, called CurrentGameplay.
-
-        //TODO FInish creating and giving current gameplay the stuff.
-
-        theCurrentGameplay = newCurrentGamePlay(playerArray, arrayOfAllTargetChipsInGame, board);
+    }
+    private void createTheSelectedBoard(){
 
     }
 
-    /*
-    public createAllNewPlayers(){
 
-    }
 
-    public createAllRobots(){
 
-    }
-    public createAllTokens(){
 
-    }
-*/ //Later if need be.
+
+
+
 
 }
+
+
+
+
+
+
+
