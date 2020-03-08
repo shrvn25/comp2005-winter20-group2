@@ -24,6 +24,15 @@ public class GameSettings {
         this.boardType = newBoardType;
     }
 
+    public boolean boardTypeIsSimple(){
+        if (this.boardType == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public void setDifficulty(int newDifficulty){
         this.difficulty = newDifficulty;
     }

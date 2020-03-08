@@ -1,9 +1,7 @@
 package com.group2.startingstoppinggame;
 
 import com.group2.gui.GameSettings;
-import com.group2.physicalgameobjects.Player;
-import com.group2.physicalgameobjects.Robot;
-import com.group2.physicalgameobjects.TargetChip;
+import com.group2.physicalgameobjects.*;
 
 
 public class Gameplay {
@@ -16,6 +14,8 @@ public class Gameplay {
     TargetChip multicoloredTargetChip;
     GameSettings theRecordedGameSettings;
     CurrentGamePlay theCurrentGameplay;
+    GameBoard theGameBoard;
+
 
     Player playerArray[];
     Robot robotArray[];
@@ -29,6 +29,9 @@ public class Gameplay {
         this.theRecordedGameSettings = newGameSettings;
         //First set up the game //TODO if this isn't a new game you load old game here and skip this.
         initializeBrandNewGameObjects();
+
+        //Start the Gameplay
+
 
 
 
@@ -187,6 +190,12 @@ public class Gameplay {
 
     }
     private void createTheSelectedBoard(){
+        if (theRecordedGameSettings.boardTypeIsSimple() == true){
+            theGameBoard = new SimpleBoard();
+        }
+        else{
+            theGameBoard = new ComplexBoard();
+        }
 
     }
 
