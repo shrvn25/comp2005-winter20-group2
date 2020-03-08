@@ -3,7 +3,7 @@ package com.group2.physicalgameobjects;
 import java.util.List;
 
 public class Square {
-    private int xyCoordinate[][];
+    private int rowColumnCoordinate[][];
     private List listOfItemsOnSquare; //Because you can store different data types in an we need to make a list instead of arraylist(Like barrier and if a robot is on it or not). Designate a index in the array for something.
     //Robot robotOnSquare;
     private boolean robotIsOnSquare;
@@ -12,10 +12,10 @@ public class Square {
 
 
 
-    public Square(){
+    public Square(int rowCoordinate, int columnCoordinate){
         //Default is that there is nothing on the square at first, you have to add to it.
 
-        xyCoordinate = new int[-1][-1];//That coordinate doesn't exist and so you need to change it before use.
+        rowColumnCoordinate = new int[rowCoordinate][columnCoordinate];
         listOfItemsOnSquare = new List;
 
         for (int i = 0; i < 4; i++) { //Three spaces for barrier in first index, targetsquare in second, and robotsquare in third.
@@ -76,7 +76,21 @@ public class Square {
         }
     }
 
-    public addNort
+    public void addNorthEdgeBarrier(){//TODO may need to tweak later
+        this.northEdgeBarrier = new SquareEdgeBarrier();
+    }
+
+    public void addSouthEdgeBarrier(){
+        this.southEdgeBarrier = new SquareEdgeBarrier();
+    }
+
+    public void addEastEdgeBarrier(){
+        this.eastEdgeBarrier = new SquareEdgeBarrier();
+    }
+
+    public void addWestEdgeBarrier(){
+        this.westEdgeBarrier = new SquareEdgeBarrier();
+    }
 
     public boolean doesSquareHaveNorthEdgeBarrier(){
 

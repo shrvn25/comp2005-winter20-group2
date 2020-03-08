@@ -3,6 +3,7 @@ package com.group2.physicalgameobjects;
 public class Robot {
     private String color;
     private String shape;
+    private //TODO ROBOT MOVEMENT DIRECTION?
 
     public Robot(String newColor, String newShape){ //TODO this is new now with color and shape inputs
         this.color = newColor;
