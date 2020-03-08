@@ -1,14 +1,15 @@
 package com.group2.physicalgameobjects;
 
+import com.group2.physicalgameobjects.Color.*;
 import com.group2.physicalgameobjects.Symbols.*;
 
 public class TargetTile {
-    Symbol symbol;
-    String color;
+    private Symbol symbol;
+    private Color color;
 
     public TargetTile(){
         this.symbol = null;
-        this.color = "";
+        this.color = null;
 
     }
 
@@ -29,6 +30,24 @@ public class TargetTile {
     }
 
     public void addRedColor{
-        this.color = "RED"
+        this.color = new RedColor();
     }
+
+    public void addGreenColor(){
+        this.color = new GreenColor();
+    }
+
+    public void addBlueColor(){
+        this.color = new BlueColor();
+    }
+
+    public void addYellowColor(){
+        this.color = new YellowColor();
+    }
+
+    public return
+
+
+
+
 }

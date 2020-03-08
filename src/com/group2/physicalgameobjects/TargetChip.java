@@ -2,9 +2,9 @@ package com.group2.physicalgameobjects;
 
 public class TargetChip {
 
-    String color;
-    String shape;
-    int location;
+    private String color;
+    private String shape;
+    private int location;
 
     public TargetChip(String newColor, String newShape){ //TODO I updated signature compared to class diagram.
         this.color = newColor;

@@ -6,11 +6,11 @@ import com.group2.physicalgameobjects.TargetTile;
 import java.util.List;
 
 public class Square {
-    int xyCoordinate[][];
-    List listOfItemsOnSquare; //Because you can store different data types in an we need to make a list instead of arraylist(Like barrier and if a robot is on it or not). Designate a index in the array for something.
+    private int xyCoordinate[][];
+    private List listOfItemsOnSquare; //Because you can store different data types in an we need to make a list instead of arraylist(Like barrier and if a robot is on it or not). Designate a index in the array for something.
     //Robot robotOnSquare;
-    boolean robotIsOnSquare;
-    boolean squareIsATargetTile;
+    private boolean robotIsOnSquare;
+    private boolean squareIsATargetTile;
 
 
     public Square(){

@@ -3,7 +3,7 @@ package com.group2.physicalgameobjects;
 public class SimpleBoard extends GameBoard { //TODO Check this
 
     //int [][][][] newGameBoardAsCoordinates;
-    int [][] newGameBoardAsCoordinates;
+    private int [][] newGameBoardAsCoordinates;
 
 
     public SimpleBoard() {

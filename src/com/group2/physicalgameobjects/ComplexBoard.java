@@ -2,7 +2,7 @@ package com.group2.physicalgameobjects;
 
 public class ComplexBoard extends GameBoard {
 
-    GameBoard[][] newGameBoard;
+    private GameBoard[][] newGameBoard;
 
     public ComplexBoard(){
         super();

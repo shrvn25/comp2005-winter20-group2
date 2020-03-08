@@ -1,8 +1,8 @@
 package com.group2.physicalgameobjects;
 
 public class Robot {
-    String color;
-    String shape;
+    private String color;
+    private String shape;
 
     public Robot(String newColor, String newShape){ //TODO this is new now with color and shape inputs
         this.color = newColor;

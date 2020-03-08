@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Player {
 //INSTANCE VARIABLES
 
-    String playerType;
-    String playerName;
-    int location;
+    private String playerType;
+    private String playerName;
+    private int location;
 
-    int playerID;
-    int tokenCount;
-    Robot playersRobot;
+    private int playerID;
+    private int tokenCount;
+    private Robot playersRobot;
 
-    ArrayList<TargetChip> playersCollectedTargetChips;
+    private ArrayList<TargetChip> playersCollectedTargetChips;
 
 
 
