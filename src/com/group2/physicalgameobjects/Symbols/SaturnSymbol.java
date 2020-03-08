@@ -1,4 +1,4 @@
 package com.group2.physicalgameobjects.Symbols;
 
-public class HalfMoonSymbol extends Symbol {
+public class SaturnSymbol extends Symbol {
 }

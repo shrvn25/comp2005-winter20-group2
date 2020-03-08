@@ -23,15 +23,15 @@ public class TargetTile {
 
 //TODO May not need below
     public void addCircleSymbol(){
-        this.symbol = new CircleSymbol();
+        this.symbol = new GearSymbol();
     }
 
     public void addSquareSymbol(){
-        this.symbol = new SquareSymbol();
+        this.symbol = new SaturnSymbol();
     }
 
     public void addHalfMoonSymbol(){
-        this.symbol = new HalfMoonSymbol();
+        this.symbol = new CrescentMoonSymbol();
     }
 
     public void addStarSymbol(){

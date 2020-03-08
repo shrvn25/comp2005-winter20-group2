@@ -1,4 +1,4 @@
 package com.group2.physicalgameobjects.Symbols;
 
-public class SquareSymbol extends Symbol {
+public class GearSymbol extends Symbol {
 }
