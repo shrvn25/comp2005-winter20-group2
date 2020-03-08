@@ -123,8 +123,8 @@ public class SimpleBoard extends GameBoard { //TODO Check this
 
         newSimpleBoardAsRowColCoordinates[15][0].addSouthEdgeBarrier();
         newSimpleBoardAsRowColCoordinates[15][0].addWestEdgeBarrier();
-
-        //Then do inner square corners clockwise from top left//TODO Change?
+*/
+        //Do inner square corners clockwise from top left//TODO Change?
 
         newSimpleBoardAsRowColCoordinates[7][7].addWestEdgeBarrier();
         newSimpleBoardAsRowColCoordinates[7][7].addNorthEdgeBarrier();
@@ -137,7 +137,7 @@ public class SimpleBoard extends GameBoard { //TODO Check this
 
         newSimpleBoardAsRowColCoordinates[8][7].addSouthEdgeBarrier();
         newSimpleBoardAsRowColCoordinates[8][7].addWestEdgeBarrier();
-        */
+
 
 
         //Now do north edge of whole board can overwrite corners
@@ -219,12 +219,16 @@ public class SimpleBoard extends GameBoard { //TODO Check this
 
         //Then do random barriers for particular squares within the board that's left.
 
-        newSimpleBoardAsRowColCoordinates
+        //Starting from top row going down //TODO NOTE THAT ADJACENT BOARDS NEED TO HAVE THE SAME BARRIER ON OPPOSITE SIDES.
+
+        //Barrier1
+        newSimpleBoardAsRowColCoordinates[0][1].addEastEdgeBarrier();
+        newSimpleBoardAsRowColCoordinates[0][2].addWestEdgeBarrier();
+
+        //Barrier2
 
 
 
-
-        //Then do
 
 
 
