@@ -11,6 +11,9 @@ import java.util.List;
  * barrier that some robots can pass through (note that two square adjacent to each other that have a edge barrier in between
  * them, have a recorded edge barrier on opposite sides of each other.) Square can also tell you if there is a target
  * tile on it and what that tile is,  and if there is a robot on it, and what that robot is.
+ *
+ * A square can also tell a robot or use if they can move in a certain direction if the user or robot tells them
+ * what direction they want to move.
  */
 public class Square {
     private int rowColumnCoordinate[][];
@@ -19,6 +22,7 @@ public class Square {
     private boolean robotIsOnSquare;
     private boolean squareIsATargetTile;
     private SquareEdgeBarrier northEdgeBarrier, southEdgeBarrier, eastEdgeBarrier, westEdgeBarrier;
+    private boolean doesSquareHaveNorthEdgeBarrier, doesSquareHaveSouthEdgeBarrier, doesSquareHaveEastEdgeBarrier, doesSquareHaveWestEdgeBarrier;
 
 
     /**
@@ -45,6 +49,11 @@ public class Square {
         southEdgeBarrier = null;
         eastEdgeBarrier = null;
         westEdgeBarrier = null;
+
+        doesSquareHaveEastEdgeBarrier = false;
+        doesSquareHaveNorthEdgeBarrier = false;
+        doesSquareHaveSouthEdgeBarrier = false;
+        doesSquareHaveWestEdgeBarrier = false;
 
     }
 
@@ -164,6 +173,52 @@ public class Square {
     public boolean doesSquareHaveWestEdgeBarrier(){
 
     }
+
+    /**
+     * This method accepts a string direction "NORTH" "SOUTH" "EAST" "WEST" and returns if the player or user can move
+     * in that
+     * @param directionIWishToMove
+     * @return
+     */
+
+    public boolean canIMoveNorth(String directionIWishToMove){
+        if (doesSquareHaveNorthEdgeBarrier == true){
+            return false;
+        }
+        else{
+            return true;
+        }
+
+    }
+
+    public boolean canIMoveSouth(String directionIWishToMove){
+        if (doesSquareHaveSouthEdgeBarrier == true){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean canIMoveEast(String directionIWishToMove){
+        if (doesSquareHaveEastEdgeBarrier == true){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean canIMoveWest(String directionIWishToMove){
+        if (doesSquareHaveWestEdgeBarrier == true){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+
 
 
 
