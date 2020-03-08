@@ -3,7 +3,10 @@ package com.group2.startingstoppinggame;
 import com.group2.gui.GameSettings;
 import com.group2.physicalgameobjects.*;
 
-
+/**
+ * This class creates a new gameplay for the game. It takes the settings recorded in the GameSettings and then creates
+ * all of the different physical objects needed for the game.
+ */
 public class Gameplay {
     Player player1, player2, player3, player4, player5;
     Robot redStarRobot, greenSquareRobot, yellowCircleRobot, blueHalfMoonRobot;
@@ -41,7 +44,9 @@ public class Gameplay {
     }
 
 
-
+    /**
+     * This worker method breaks down the making of objects into separate steps.
+     */
     private void initializeBrandNewGameObjects() {
         createAllRobots();
         createAllNewPlayers();
@@ -49,7 +54,9 @@ public class Gameplay {
         createTheSelectedBoard();
     }
 
-
+    /**
+     * This method creates all the robots.
+     */
     private void createAllRobots(){
         //First make the robot array
         robotArray = new Robot[4];
@@ -68,6 +75,10 @@ public class Gameplay {
         robotArray[2] = yellowCircleRobot;
         robotArray[3] = blueHalfMoonRobot;
     }
+
+    /**
+     * This method creates all the players, and gives them their robots.
+     */
     private void createAllNewPlayers(){
         //First create arrays to hold all players and robots
         playerArray = new Player[4];
@@ -126,6 +137,11 @@ public class Gameplay {
         player4.setPlayersRobot(robotArray[3]);//Player 4 is always with the blue half moon robot
 
     }
+
+    /**
+     * This method creates all the tokens, and puts them in an array. Later this tokens will be put in a random order
+     * for gameplay when a player draws them.
+     */
     private void createAllTokens(){
         //Generate the array of all tokens in the game //TODO token to targetChips
         //TODO Are these target chips designed correctly?
@@ -190,6 +206,10 @@ public class Gameplay {
 
 
     }
+
+    /**
+     * This method creates either the simple or complex board depending on the recorded game settings.
+     */
     private void createTheSelectedBoard(){
         if (theRecordedGameSettings.boardTypeIsSimple() == true){
             theGameBoard = new SimpleBoard();

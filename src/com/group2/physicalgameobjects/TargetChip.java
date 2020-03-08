@@ -1,5 +1,8 @@
 package com.group2.physicalgameobjects;
 
+/**
+ * This class creates one of the 17 target chips. It has a color and shape.
+ */
 public class TargetChip {
 
     private String color;

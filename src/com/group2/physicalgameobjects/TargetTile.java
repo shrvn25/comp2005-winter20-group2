@@ -3,6 +3,10 @@ package com.group2.physicalgameobjects;
 import com.group2.physicalgameobjects.Color.*;
 import com.group2.physicalgameobjects.Symbols.*;
 
+/**
+ * This class creates a target tile found on either a simple or complex board. It has a color and a shape.
+ */
+
 public class TargetTile {
     private Symbol symbol;
     private Color color;

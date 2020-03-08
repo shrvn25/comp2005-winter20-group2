@@ -10,7 +10,8 @@ import com.group2.physicalgameobjects.Symbols.SaturnSymbol;
 import com.group2.physicalgameobjects.Symbols.StarSymbol;
 
 /**
- * This class
+ * This class builds and connects the various physical objects on a simple board to the actual simple board in
+ * programming logic.
  */
 
 public class SimpleBoard extends GameBoard { //TODO Check this
@@ -23,7 +24,10 @@ public class SimpleBoard extends GameBoard { //TODO Check this
     private TargetTile blueStarTargetTile, blueGearTargetTile, blueSaturnTargetTile, blueCrescentMoonTargetTile;
     private TargetTile multicoloredTargetTile;
 
-
+    /**
+     * This constructor first makes a blank simple board in programming structures, and creates and connects the other
+     * Java objects to this board.
+     */
     public SimpleBoard() {
         super();
         newSimpleBoardAsRowColCoordinates = new Square[16][16];
@@ -74,33 +78,33 @@ public class SimpleBoard extends GameBoard { //TODO Check this
         greenStarTargetTile = new TargetTile(new GreenColor(), new StarSymbol());
 
         //Then add the TargetTiles to Those Squares for a Simple Board
-        newSimpleBoardAsRowColCoordinates[1][4].addTargetSquareToSquare(redCrescentMoonTargetTile);
-        newSimpleBoardAsRowColCoordinates[1][13].addTargetSquareToSquare(redSaturnTargetTile);
+        newSimpleBoardAsRowColCoordinates[1][4].addTargetTileToSquare(redCrescentMoonTargetTile);
+        newSimpleBoardAsRowColCoordinates[1][13].addTargetTileToSquare(redSaturnTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[2][1].addTargetSquareToSquare(greenGearTargetTile);
-        newSimpleBoardAsRowColCoordinates[2][9].addTargetSquareToSquare(blueGearTargetTile);
+        newSimpleBoardAsRowColCoordinates[2][1].addTargetTileToSquare(greenGearTargetTile);
+        newSimpleBoardAsRowColCoordinates[2][9].addTargetTileToSquare(blueGearTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[3][6].addTargetSquareToSquare(yellowStarTargetTile);
+        newSimpleBoardAsRowColCoordinates[3][6].addTargetTileToSquare(yellowStarTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[5][14].addTargetSquareToSquare(greenStarTargetTile);
+        newSimpleBoardAsRowColCoordinates[5][14].addTargetTileToSquare(greenStarTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[6][3].addTargetSquareToSquare(blueSaturnTargetTile);
-        newSimpleBoardAsRowColCoordinates[6][11].addTargetSquareToSquare(yellowCrescentMoonTargetTile);
+        newSimpleBoardAsRowColCoordinates[6][3].addTargetTileToSquare(blueSaturnTargetTile);
+        newSimpleBoardAsRowColCoordinates[6][11].addTargetTileToSquare(yellowCrescentMoonTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[7][5].addTargetSquareToSquare(multicoloredTargetTile);
+        newSimpleBoardAsRowColCoordinates[7][5].addTargetTileToSquare(multicoloredTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[9][1].addTargetSquareToSquare(blueCrescentMoonTargetTile);
-        newSimpleBoardAsRowColCoordinates[9][14].addTargetSquareToSquare(yellowSaturnTargetTile);
+        newSimpleBoardAsRowColCoordinates[9][1].addTargetTileToSquare(blueCrescentMoonTargetTile);
+        newSimpleBoardAsRowColCoordinates[9][14].addTargetTileToSquare(yellowSaturnTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[10][4].addTargetSquareToSquare(greenSaturnTargetTile);
-        newSimpleBoardAsRowColCoordinates[10][8].addTargetSquareToSquare(redGearTargetTile);
+        newSimpleBoardAsRowColCoordinates[10][4].addTargetTileToSquare(greenSaturnTargetTile);
+        newSimpleBoardAsRowColCoordinates[10][8].addTargetTileToSquare(redGearTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[11][13].addTargetSquareToSquare(greenCrescentMoonTargetTile);
+        newSimpleBoardAsRowColCoordinates[11][13].addTargetTileToSquare(greenCrescentMoonTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[13][5].addTargetSquareToSquare(redStarTargetTile);
-        newSimpleBoardAsRowColCoordinates[13][10].addTargetSquareToSquare(blueStarTargetTile);
+        newSimpleBoardAsRowColCoordinates[13][5].addTargetTileToSquare(redStarTargetTile);
+        newSimpleBoardAsRowColCoordinates[13][10].addTargetTileToSquare(blueStarTargetTile);
 
-        newSimpleBoardAsRowColCoordinates[14][3].addTargetSquareToSquare(yellowGearTargetTile);
+        newSimpleBoardAsRowColCoordinates[14][3].addTargetTileToSquare(yellowGearTargetTile);
 
 
     }
