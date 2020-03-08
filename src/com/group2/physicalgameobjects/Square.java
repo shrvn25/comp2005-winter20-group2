@@ -1,5 +1,8 @@
 package com.group2.physicalgameobjects;
 
+import com.group2.physicalgameobjects.Robot;
+import com.group2.physicalgameobjects.TargetTile;
+
 import java.util.List;
 
 public class Square {
