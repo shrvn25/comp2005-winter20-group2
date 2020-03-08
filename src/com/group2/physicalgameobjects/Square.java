@@ -1,8 +1,5 @@
 package com.group2.physicalgameobjects;
 
-import com.group2.physicalgameobjects.Robot;
-import com.group2.physicalgameobjects.TargetTile;
-
 import java.util.List;
 
 public class Square {
@@ -11,6 +8,8 @@ public class Square {
     //Robot robotOnSquare;
     private boolean robotIsOnSquare;
     private boolean squareIsATargetTile;
+    private SquareEdgeBarrier northEdgeBarrier, southEdgeBarrier, eastEdgeBarrier, westEdgeBarrier;
+
 
 
     public Square(){
@@ -26,6 +25,11 @@ public class Square {
 
         robotIsOnSquare = false;
         squareIsATargetTile = false;
+
+        northEdgeBarrier = null;
+        southEdgeBarrier = null;
+        eastEdgeBarrier = null;
+        westEdgeBarrier = null;
 
     }
 
@@ -70,6 +74,22 @@ public class Square {
         else{
             return false;
         }
+    }
+
+    public addNort
+
+    public boolean doesSquareHaveNorthEdgeBarrier(){
+
+    }
+
+    public boolean doesSquareHaveSouthEdgeBarrier(){
+
+    }
+    public boolean doesSquareHaveEastEdgeBarrier(){
+
+    }
+    public boolean doesSquareHaveWestEdgeBarrier(){
+
     }
 
 
