@@ -86,7 +86,7 @@ public class StartMenuGUI extends JFrame implements ActionListener{
         }
         else if (x == loadOldGameButton){
             super.dispose();
-            gui.GameBoard newGameBoard = new gui.GameBoard(16,16);
+            gui.GameBoardGUI newGameBoardGUI = new gui.GameBoardGUI(16,16);
         }
        
     }
