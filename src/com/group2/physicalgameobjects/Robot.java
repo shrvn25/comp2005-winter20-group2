@@ -70,6 +70,14 @@ public class Robot {
 
  */
 
+    public String getImageFileLocation(){
+
+    }
+
+    public setImageFileLocation(String imageFileLocation){
+
+    }
+
 
 
 

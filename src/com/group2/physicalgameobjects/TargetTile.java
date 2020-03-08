@@ -58,7 +58,13 @@ public class TargetTile {
         this.color = new YellowColor();
     }
 
-    public return
+    public String getImageFileLocation(){
+
+    }
+
+    public setImageFileLocation(String imageFileLocation){
+
+    }
 
 
 

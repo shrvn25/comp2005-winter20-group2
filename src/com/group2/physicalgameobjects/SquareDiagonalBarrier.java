@@ -5,5 +5,15 @@ import com.group2.physicalgameobjects.Color.Color;
 public class SquareDiagonalBarrier {
     Color color;
 
-    public SquareDiagonal
+    public SquareDiagonal(){
+
+    }
+
+    public String getImageFileLocation(){
+
+    }
+
+    public setImageFileLocation(String imageFileLocation){
+
+    }
 }

@@ -134,6 +134,14 @@ public Player(){
         return this.playersCollectedTargetChips.size();
     }
 
+    public String getImageFileLocation(){
+
+    }
+
+    public setImageFileLocation(String imageFileLocation){
+
+    }
+
 
 
 

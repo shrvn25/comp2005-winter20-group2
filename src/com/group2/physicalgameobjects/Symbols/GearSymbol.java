@@ -6,3 +6,10 @@ package com.group2.physicalgameobjects.Symbols;
 
 public class GearSymbol extends Symbol {
 }
+    public String getImageFileLocation(){
+
+    }
+
+    public setImageFileLocation(String imageFileLocation){
+
+    }

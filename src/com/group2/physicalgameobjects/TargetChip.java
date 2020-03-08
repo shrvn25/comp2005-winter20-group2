@@ -30,6 +30,14 @@ public class TargetChip {
         this.shape = newShape;
     }
 
+    public String getImageFileLocation(){
+
+    }
+
+    public setImageFileLocation(String imageFileLocation){
+
+    }
+
 
 
 }

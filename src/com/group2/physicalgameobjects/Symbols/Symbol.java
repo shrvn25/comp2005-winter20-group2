@@ -5,3 +5,10 @@ package com.group2.physicalgameobjects.Symbols;
  */
 public class Symbol {
 }
+    public String getImageFileLocation(){
+
+    }
+
+    public setImageFileLocation(String imageFileLocation){
+
+    }
