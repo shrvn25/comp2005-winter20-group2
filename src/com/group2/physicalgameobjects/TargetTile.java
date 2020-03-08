@@ -7,12 +7,21 @@ public class TargetTile {
     private Symbol symbol;
     private Color color;
 
-    public TargetTile(){
-        this.symbol = null;
-        this.color = null;
-
+    public TargetTile(Color newColor, Symbol newSymbol){
+        this.color = newColor;
+        this.symbol = newSymbol;
     }
 
+
+    public Color getColor(){
+        return this.color;
+    }
+
+    public Symbol getSymbol(){
+        return this.symbol;
+    }
+
+//TODO May not need below
     public void addCircleSymbol(){
         this.symbol = new CircleSymbol();
     }
