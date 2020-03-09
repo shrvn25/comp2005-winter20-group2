@@ -240,6 +240,18 @@ public class SimpleBoard extends GameBoard { //TODO Check this
 
     }
 
+    /**
+     * This method returns a Square[] array of all squares on the simple board row by row.
+     * @return
+     */
+    public Square[] getArrayOfAllSquaresRowByRow(){
+
+    }
+
+
+    public Square getSquareAtRowColumnLocation(int row, int column){
+        return newSimpleBoardAsRowColCoordinates[row][column];
+    }
 
 }
 

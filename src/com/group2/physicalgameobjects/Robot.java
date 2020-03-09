@@ -9,14 +9,16 @@ public class Robot {
     private String color;
     private String shape;
     private //TODO ROBOT MOVEMENT DIRECTION?
+    private int [][] robotsRowColumnLocation;
 
     /**
      * When the robot is first made, it must be provided with a Color and a Shape.
      */
 
-    public Robot(String newColor, String newShape){ //TODO this is new now with color and shape inputs
+    public Robot(String newColor, String newShape, int rowLocation, int columnLocation){ //TODO this is new now with color and shape inputs
         this.color = newColor;
         this.shape = newShape;
+        this.robotsRowColumnLocation = new int[rowLocation][columnLocation];
     }
 
     /**
@@ -53,6 +55,10 @@ public class Robot {
 
     public void setShape(String newShape){
         this.shape = newShape;
+    }
+
+    public int[][] getCurrentRowColumnLocation(){
+        return this.robotsRowColumnLocation;
     }
 
 

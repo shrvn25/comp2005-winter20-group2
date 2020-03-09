@@ -23,6 +23,10 @@ public class Square {
     private boolean squareIsATargetTile;
     private SquareEdgeBarrier northEdgeBarrier, southEdgeBarrier, eastEdgeBarrier, westEdgeBarrier;
     private boolean doesSquareHaveNorthEdgeBarrier, doesSquareHaveSouthEdgeBarrier, doesSquareHaveEastEdgeBarrier, doesSquareHaveWestEdgeBarrier;
+    private boolean wasSquareVisited; //For Dijkstra's Algorithm
+    private int actualDistanceValue;//For Dijkstra's Algorithm
+    private int preliminaryDistanceValue; //For Dijkstra's Algorithm
+    private boolean isSquareTheCurrentNodeForDA;
 
 
     /**
@@ -54,6 +58,12 @@ public class Square {
         doesSquareHaveNorthEdgeBarrier = false;
         doesSquareHaveSouthEdgeBarrier = false;
         doesSquareHaveWestEdgeBarrier = false;
+
+        wasSquareVisited = false;
+
+        actualDistanceValue = -1;//-1 Represents infinity
+        preliminaryDistanceValue = -1; //-1 Represents infinity
+        isSquareTheCurrentNodeForDA = false;
 
     }
 
@@ -216,6 +226,34 @@ public class Square {
         else{
             return true;
         }
+    }
+
+    public void setSquareToUnvisted(){
+        this.wasSquareVisited = false;
+    }
+
+    public void setSquareToVisited(){
+        this.wasSquareVisited = true;
+    }
+
+    public void setSquareAsCurrentNodeInDA(){
+        this.isSquareTheCurrentNodeForDA = true;
+    }
+
+    public void setSquareAsNOTCurrentNodeInDA(){
+        this.isSquareTheCurrentNodeForDA = false;
+    }
+
+    public void changeActualDistanceValueForDA(int newDistanceValue){
+        this.actualDistanceValue = newDistanceValue;
+    }
+
+    public void changePreliminaryDistanceValueForDA(int preliminaryDistanceValue){
+        this.preliminaryDistanceValue = preliminaryDistanceValue;
+    }
+
+    public int[][] getSquaresRowColumnLocation(){
+        return rowColumnCoordinate;
     }
 
 

@@ -12,7 +12,7 @@ public class Player {
 
     private String playerType;
     private String playerName;
-    private int location;
+    private int [][] location;
 
     private int playerID;
     private int tokenCount;
@@ -36,6 +36,7 @@ public Player(){
     this.playersRobot = new Robot();
     this.playerID = -1;
     this.playersCollectedTargetChips = new ArrayList<TargetChip>();
+    this.location = new int[-1][-1];
 }
 //METHODS
 
