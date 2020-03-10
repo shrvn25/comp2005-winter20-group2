@@ -3,8 +3,6 @@ package com.group2.gameplayrules;
 
 import com.group2.physicalgameobjects.*;
 
-import java.util.HashSet;
-
 /**
  * This class deals with the bidding process.
  */
@@ -44,6 +42,154 @@ public class MakingBidsProcess {
         int [][] robot3Location = robot3.getCurrentRowColumnLocation();
         int [][] robot4Location = robot4.getCurrentRowColumnLocation();
 
+
+    }
+
+    public boolean wereMovesLegalAndAccurate(int BidNumber, Square[] listOfSquaresMovedInOrder, Robot robotToMove, Square squareWithTargetTile){
+
+        //One move is going in a straight line until it hits a barrier.
+
+        //You cannot go through a barrier.
+
+        //First count the number of moves. If the moves don't match the bid number, then it's wrong.
+
+        //First confirm that the starting square is the robot's current position and the last square is the target tile.
+
+        Location robotLocation = robotToMove.getRobotLocation();
+        Location startSquareLocation = listOfSquaresMovedInOrder[0].getSquaresRowColumnLocation();
+        Location squareWithTargetTileLocation = squareWithTargetTile.getSquaresRowColumnLocation();
+        Location lastSquareLocation = listOfSquaresMovedInOrder[listOfSquaresMovedInOrder.length-1].getSquaresRowColumnLocation();
+
+        if ( (robotLocation.equals(startSquareLocation) == false) ||  ( lastSquareLocation.equals(squareWithTargetTileLocation) == false) {
+            return false;
+        }
+
+        //If true, we continue
+
+        boolean weHaveReachedTargetTile = false;
+        boolean moveIllegal = false;
+
+        while (weHaveReachedTargetTile == false && moveIllegal == false){
+            //get the next square in the array
+            for (int i = 0; i < listOfSquaresMovedInOrder.length - 1; i++) {
+                Square currentSquareInArray = listOfSquaresMovedInOrder[i];
+                Square nextSquareInArray = listOfSquaresMovedInOrder[i+1];
+
+
+                //First is there a barrier in between squares in that direction?
+                if (isThereABarrierBlockingIntendedDirection(currentSquareInArray, nextSquareInArray) == true){
+                    return false;
+                }
+
+                //If not, we continue.
+
+                //Is the direction perpendicular to the barrier on the square we are on right now?
+                String intendedDirection = ;
+                isDirectionPerpendicularToBarrierOnSquareWeAreOn(String intendedDirection, Square squareWeAreOn);
+
+
+                //Are we hitting a barrier to ricochet off of?
+
+
+
+            }
+
+        }
+
+        //Then check
+        /*
+        while we have
+        if (coordinate of first square == coordinate of robot){
+            get the next square in the array
+            What direction is this square relative to the first square?
+            Is there a barrier on the direction side of the first square?
+            If yes, the move is not right and return false.
+            If no, keep going.
+
+
+
+        }
+        */
+
+
+
+
+    }
+
+    /**
+     *
+     * Note, square MUST have different coordinates that are positive integers, or it won't work.
+     * @param startingSquare
+     * @param endingSquare
+     * @return
+     */
+
+    private String returnIntendedDirection(Square startingSquare, Square endingSquare){
+        int rowCoordinateStartSquare = startingSquare.getSquaresRowColumnLocation().getRowCoordinate();
+        int columnCoordinateStartSquare = startingSquare.getSquaresRowColumnLocation().getColumnCoordinate();
+
+        int rowCoordinateEndingSquare = endingSquare.getSquaresRowColumnLocation().getRowCoordinate();
+        int columnCoordinateEndingSquare = endingSquare.getSquaresRowColumnLocation().getColumnCoordinate();
+
+        int EndRowCoordMinusStartRowCoord = rowCoordinateEndingSquare - rowCoordinateStartSquare;
+        int EndColCoordMinusStartColCoord = columnCoordinateEndingSquare - columnCoordinateStartSquare;
+
+        if ( (EndColCoordMinusStartColCoord == 0) && (EndRowCoordMinusStartRowCoord > 0) ){
+            return "NORTH";
+        }
+        else if ( (EndColCoordMinusStartColCoord == 0) && (EndRowCoordMinusStartRowCoord < 0) ){
+            return "SOUTH";
+        }
+        else if ((EndColCoordMinusStartColCoord > 0) && (EndRowCoordMinusStartRowCoord == 0)){
+            return "EAST";
+        }
+        else if ((EndColCoordMinusStartColCoord < 0) && (EndRowCoordMinusStartRowCoord == 0)){
+            return "WEST";
+        }
+    }
+
+    /**
+     * This worker method checks if there is a barrier blocking the intended direction.
+     * @param startingSquare
+     * @param endingSquare
+     * @return
+     */
+    private boolean isThereABarrierBlockingIntendedDirection(Square startingSquare, Square endingSquare) {
+        String direction = returnIntendedDirection(startingSquare, endingSquare);
+
+        if (direction.equals("NORTH") && (startingSquare.doesSquareHaveNorthEdgeBarrier() == true)) {
+            return false;
+        } else if (direction.equals("SOUTH") && (startingSquare.doesSquareHaveSouthEdgeBarrier() == true)) {
+            return false;
+        } else if (direction.equals("EAST") && (startingSquare.doesSquareHaveEastEdgeBarrier() == true)) {
+            return false;
+        } else if (direction.equals("WEST") && (startingSquare.doesSquareHaveWestEdgeBarrier() == true)) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+
+
+        /**
+         *
+         */
+        private boolean isDirectionPerpendicularToBarrierOnSquareWeAreOn(String intendedDirection, Square squareWeAreOn){
+            if (intendedDirection.equals("NORTH") {
+                if (squareWeAreOn.doesSquareHaveEastEdgeBarrier() || squareWeAreOn.doesSquareHaveWestEdgeBarrier()){
+                    return true;
+            }
+
+        }
+
+
+
+    }
+
+
+    /*
         //First calculate the shortest path from robot1 to the target tile on this gameboard.
         //This uses's Disjksra's algorithm (shortest path to target tile on this gameboard)
 
@@ -116,132 +262,6 @@ public class MakingBidsProcess {
 
 
 
-
-
-    }
-
-    public boolean wereMovesLegalAndAccurate(int BidNumber, Square[] listOfSquaresMovedInOrder, Robot robotToMove, Square squareWithTargetTile){
-
-        //One move is going in a straight line until it hits a barrier.
-
-        //You cannot go through a barrier.
-
-        //First count the number of moves. If the moves don't match the bid number, then it's wrong.
-
-        //First confirm that the starting square is the robot's current position and the last square is the target tile.
-
-        Location robotLocation = robotToMove.getRobotLocation();
-        Location startSquareLocation = listOfSquaresMovedInOrder[0].getSquaresRowColumnLocation();
-        Location squareWithTargetTileLocation = squareWithTargetTile.getSquaresRowColumnLocation();
-        Location lastSquareLocation = listOfSquaresMovedInOrder[listOfSquaresMovedInOrder.length-1].getSquaresRowColumnLocation();
-
-        if ( (robotLocation.equals(startSquareLocation) == false) ||  ( lastSquareLocation.equals(squareWithTargetTileLocation) == false) {
-            return false;
-        }
-
-        //If true, we continue
-
-        boolean weHaveReachedTargetTile = false;
-        boolean moveIllegal = false;
-
-        while (weHaveReachedTargetTile == false && moveIllegal == false){
-            //get the next square in the array
-            for (int i = 0; i < listOfSquaresMovedInOrder.length - 1; i++) {
-                Square currentSquareInArray = listOfSquaresMovedInOrder[i];
-                Square nextSquareInArray = listOfSquaresMovedInOrder[i+1];
-
-
-                //First is there a barrier in between squares in that direction?
-                if (isThereABarrierBlockingIntendedDirection(currentSquareInArray, nextSquareInArray) == true){
-                    return false;
-                }
-
-                //If not, we continue.
-
-                //Are we hitting a barrier to ricochet off of?
-
-
-
-            }
-
-        }
-
-        //Then check
-        /*
-        while we have
-        if (coordinate of first square == coordinate of robot){
-            get the next square in the array
-            What direction is this square relative to the first square?
-            Is there a barrier on the direction side of the first square?
-            If yes, the move is not right and return false.
-            If no, keep going.
-
-
-
-        }
-        */
-
-
-
-
-    }
-
-    /**
-     *
-     * Note, square MUST have different coordinates that are positive integers, or it won't work.
-     * @param startingSquare
-     * @param endingSquare
-     * @return
-     */
-
-    private String getDirectionFromOneSquareToAnother(Square startingSquare, Square endingSquare){
-        int rowCoordinateStartSquare = startingSquare.getSquaresRowColumnLocation().getRowCoordinate();
-        int columnCoordinateStartSquare = startingSquare.getSquaresRowColumnLocation().getColumnCoordinate();
-
-        int rowCoordinateEndingSquare = endingSquare.getSquaresRowColumnLocation().getRowCoordinate();
-        int columnCoordinateEndingSquare = endingSquare.getSquaresRowColumnLocation().getColumnCoordinate();
-
-        int EndRowCoordMinusStartRowCoord = rowCoordinateEndingSquare - rowCoordinateStartSquare;
-        int EndColCoordMinusStartColCoord = columnCoordinateEndingSquare - columnCoordinateStartSquare;
-
-        if ( (EndColCoordMinusStartColCoord == 0) && (EndRowCoordMinusStartRowCoord > 0) ){
-            return "NORTH";
-        }
-        else if ( (EndColCoordMinusStartColCoord == 0) && (EndRowCoordMinusStartRowCoord < 0) ){
-            return "SOUTH";
-        }
-        else if ((EndColCoordMinusStartColCoord > 0) && (EndRowCoordMinusStartRowCoord == 0)){
-            return "EAST";
-        }
-        else if ((EndColCoordMinusStartColCoord < 0) && (EndRowCoordMinusStartRowCoord == 0)){
-            return "WEST";
-        }
-    }
-
-    /**
-     * This worker method checks if there is a barrier blocking the intended direction.
-     * @param startingSquare
-     * @param endingSquare
-     * @return
-     */
-    private boolean isThereABarrierBlockingIntendedDirection(Square startingSquare, Square endingSquare){
-        String direction = getDirectionFromOneSquareToAnother(startingSquare, endingSquare);
-
-        if (direction.equals("NORTH") && (startingSquare.doesSquareHaveNorthEdgeBarrier() == true)){
-            return false;
-        }
-        else if (direction.equals("SOUTH") && (startingSquare.doesSquareHaveSouthEdgeBarrier() == true)){
-            return false;
-        }
-        else if (direction.equals("EAST") && (startingSquare.doesSquareHaveEastEdgeBarrier() == true)){
-            return false;
-        }
-        else if (direction.equals("WEST") && (staringSquare.doesSquareHaveWestEdgeBarrier() == true)){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
+*/
 
 }
