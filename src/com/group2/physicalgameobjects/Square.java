@@ -16,7 +16,7 @@ import java.util.List;
  * what direction they want to move.
  */
 public class Square {
-    private int rowColumnCoordinate[][];
+    private Location rowColumnCoordinate;
     private List listOfItemsOnSquare; //Because you can store different data types in an we need to make a list instead of arraylist(Like barrier and if a robot is on it or not). Designate a index in the array for something.
     //Robot robotOnSquare;
     private boolean robotIsOnSquare;
@@ -38,7 +38,8 @@ public class Square {
     public Square(int rowCoordinate, int columnCoordinate){
         //Default is that there is nothing on the square at first, you have to add to it.
 
-        rowColumnCoordinate = new int[rowCoordinate][columnCoordinate];
+        this.rowColumnCoordinate.changeRowCoordinate(rowCoordinate);
+        this.rowColumnCoordinate.changeColumnCoordinate(columnCoordinate);
         listOfItemsOnSquare = new List;
 
         for (int i = 0; i < 4; i++) { //Three spaces for barrier in first index, targetsquare in second, and robotsquare in third.
@@ -252,8 +253,8 @@ public class Square {
         this.preliminaryDistanceValue = preliminaryDistanceValue;
     }
 
-    public int[][] getSquaresRowColumnLocation(){
-        return rowColumnCoordinate;
+    public Location getSquaresRowColumnLocation(){
+        return this.rowColumnCoordinate;
     }
 
 

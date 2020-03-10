@@ -1,6 +1,6 @@
 package com.group2.physicalgameobjects;
 
-
+import com.group2.physicalgameobjects.Location;
 /**
  * This class represents a physical robot. It can have four different colors, four different shapes to help those
  * who are visually impaired.
@@ -8,8 +8,9 @@ package com.group2.physicalgameobjects;
 public class Robot {
     private String color;
     private String shape;
-    private //TODO ROBOT MOVEMENT DIRECTION?
-    private int [][] robotsRowColumnLocation;
+
+    private Location robotLocation;
+    //private int [][] robotsRowColumnLocation;
 
     /**
      * When the robot is first made, it must be provided with a Color and a Shape.
@@ -18,7 +19,9 @@ public class Robot {
     public Robot(String newColor, String newShape, int rowLocation, int columnLocation){ //TODO this is new now with color and shape inputs
         this.color = newColor;
         this.shape = newShape;
-        this.robotsRowColumnLocation = new int[rowLocation][columnLocation];
+        this.robotLocation.changeRowCoordinate(rowLocation);
+        this.robotLocation.changeColumnCoordinate(columnLocation);
+        //this.robotsRowColumnLocation = new int[rowLocation][columnLocation];
     }
 
     /**
@@ -57,9 +60,13 @@ public class Robot {
         this.shape = newShape;
     }
 
+    public Location getRobotLocation(){
+        return this.robotLocation;
+    }
+/*
     public int[][] getCurrentRowColumnLocation(){
         return this.robotsRowColumnLocation;
-    }
+    }*/
 
 
 

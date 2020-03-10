@@ -1,9 +1,33 @@
 package com.group2.physicalgameobjects;
 
 /**
- * This class may or may not be used right now. Robot may keep track of it's own location coordinates, and player through
- * their robot.
+ * A class for working with locations.
  */
 
+
+
 public class Location {
+
+    private int rowCoordinate;
+    private int columnCoordinate;
+
+    public Location(int newRowCoordinate, int newColumnCoordinate){
+        this.rowCoordinate=newRowCoordinate;
+        this.columnCoordinate=newColumnCoordinate;
+        }
+
+        public int getRowCoordinate(){
+            return this.rowCoordinate;
+        }
+
+        public int getColumnCoordinate(){
+            return this.rowCoordinate;
+        }
+
+        public void changeRowCoordinate(int newRowCoordinate){
+            this.rowCoordinate = newRowCoordinate;
+        }
+        public void changeColumnCoordinate(int newColumnCoordinate){
+            this.columnCoordinate = newColumnCoordinate;
+        }
 }
