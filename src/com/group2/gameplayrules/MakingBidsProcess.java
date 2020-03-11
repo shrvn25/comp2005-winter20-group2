@@ -1,7 +1,11 @@
 package com.group2.gameplayrules;
 
+import java.util.*;
+
 
 import com.group2.physicalgameobjects.*;
+
+import java.util.ArrayList;
 
 /**
  * This class deals with the bidding process.
@@ -138,6 +142,9 @@ public class MakingBidsProcess {
 
         }
 
+
+
+
         //Then check
         /*
         while we have
@@ -156,6 +163,21 @@ public class MakingBidsProcess {
 
 
 
+    }
+
+    /**
+     * This method takes an arrayList with Square elements and returns as array of Square elements from the
+     * ArrayList in the same order as in the ArrayList.
+     * @param squareArrayList
+     * @return
+     */
+
+    private Square[] convertSquareArrayListToSquareArray(ArrayList<Square> squareArrayList){
+        Square [] squareArray = new Square [squareArrayList.size()];
+        for (int i = 0; i < squareArrayList.size(); i++){
+            squareArray[i] = squareArrayList.get(i);
+        }
+        return squareArray;
     }
 
     /**
