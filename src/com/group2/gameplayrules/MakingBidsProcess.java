@@ -61,27 +61,69 @@ public class MakingBidsProcess {
         Location lastSquareLocation = listOfSquaresMovedInOrder[listOfSquaresMovedInOrder.length-1].getSquaresRowColumnLocation();
 
         if ( (robotLocation.equals(startSquareLocation) == false) ||  ( lastSquareLocation.equals(squareWithTargetTileLocation) == false) {
-            return false;
+            return false; //If it's not, return false and stop.
         }
 
-        //If true, we continue
+        //If true, we continue:
 
         boolean weHaveReachedTargetTile = false;
         boolean moveIllegal = false;
+        boolean hasRobotMovedPerpendicularAtLeastOnce = false;
+
+        //TODO Robots block the way too, not just barriers.
 
         while (weHaveReachedTargetTile == false && moveIllegal == false){
             //get the next square in the array
             for (int i = 0; i < listOfSquaresMovedInOrder.length - 1; i++) {
                 Square currentSquareInArray = listOfSquaresMovedInOrder[i];
-                Square nextSquareInArray = listOfSquaresMovedInOrder[i+1];
+                Square nextSquareInArray = listOfSquaresMovedInOrder[i + 1];
 
 
                 //First is there a barrier in between squares in that direction?
-                if (isThereABarrierBlockingIntendedDirection(currentSquareInArray, nextSquareInArray) == true){
-                    return false;
+                if (isThereABarrierBlockingIntendedDirection(currentSquareInArray, nextSquareInArray) == true) {
+                    return false; //If there is, we stop. Player clicked an invalid path. The robot can't pass through a barrier.
                 }
 
-                //If not, we continue.
+                //If not, then check if there is a robot on the next square
+                if (nextSquareInArray.isRobotOnSquare() == true) {
+                    return false; //If there is, we stop. Player clicked an invalid path. They can't occupy
+                                  // the same space as another robot.
+                }
+
+            //Later, here is where you can check for the diagonal barrier.
+
+                //If not, we continue:
+
+                //Next check if the nextSquareInArray is a target tile. (We already know we have the RIGHT target tile.)
+                if (nextSquareInArray.doesSquareHaveATargetTile() == true){
+                    //If this is true, either two things need to happen: There is either a barrier in the
+                    //same direction so that the robot stops, or there is a robot in the same direction
+                    //that stops this robot on the target square. We need to check both.
+
+                    //First check if there is a barrier in the same direction on the target square that can stop
+                    //the robot.
+                    if (doesFinalSquareWithTargetTileHaveBarrierToStopIntendedDirection(..., nextSquareInArray) == true){
+                        weHaveReachedTargetTile = true;
+                        return true;
+                    }
+                    else if (doesFinalSquareWithTargetTileHaveAnotherRobotByItToStopIntendedDirection(... ...) == true){
+                        weHaveReachedTargetTile = true;
+                        return true; //The robot would keep going so it doesn't work.
+                    }
+                    else{
+                        return false;
+                    }
+
+
+                }
+
+                //If not, we continue the while loop to the next pair of squares.
+                //TODO NOTE THE ROBOT CAN'T GO STRAIGHT TO IT. IT HAS TO TAKE ANOTHER ROUTE (SO AT LEAST GO PERPENDICULAR ONE TIME).
+            }
+
+
+
+                /* Do Ricochet tests later
 
                 //Is the direction perpendicular to the barrier on the square we are on right now?
                 String intendedDirection = ;
@@ -89,10 +131,10 @@ public class MakingBidsProcess {
 
 
                 //Are we hitting a barrier to ricochet off of?
+*/
 
 
 
-            }
 
         }
 
@@ -113,6 +155,105 @@ public class MakingBidsProcess {
 
 
 
+
+    }
+
+    /**
+     * This method returns true if there is a barrier on the target square that can stop the robot from moving
+     * in it's intended direction, false if not.
+     * @param intendedDirection A string "NORTH", "SOUTH", "EAST", or "WEST" for robot's intended direction.
+     * @param squareWithTargetTile A square that has the target tile where the robot hopes to stop on.
+     * @return true if there is a barrier on the target square that can stop the robot from moving in it's intended
+     * direction, false if not.
+     */
+    private boolean doesFinalSquareWithTargetTileHaveBarrierToStopIntendedDirection(String intendedDirection, Square squareWithTargetTile){
+        if (intendedDirection.equals("NORTH") && (squareWithTargetTile.doesSquareHaveNorthEdgeBarrier() == true)){
+            return true;
+        }
+        else if (intendedDirection.equals("SOUTH") && (squareWithTargetTile.doesSquareHaveSouthEdgeBarrier() == true)){
+            return true;
+        }
+        else if (intendedDirection.equals("EAST") && (squareWithTargetTile.doesSquareHaveEastEdgeBarrier() == true)){
+            return true;
+        }
+        else if (intendedDirection.equals("WEST") && (squareWithTargetTile.doesSquareHaveWestEdgeBarrier() == true)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    /* ADD THIS METHOD TO THE SIMPLE BOARD CLASS/COMPLEX THAT BUILDS
+    public boolean doesThisWalkableSquareCoordinateExist(int rowCoordinate, int columnCoordinate){
+        if ( (rowCoordinate < 0) ||
+             (columnCoordinate < 0) ||
+             (rowCoordinate > 15) ||
+             (columnCoordinate > 15) ||
+             //Do the inner coordinates
+             ( (row Coordinate == 7) && (columnCoordinate == 7)) ||
+             ( (row Coordinate == 7) && (columnCoordinate == 8)) ||
+             ( (row Coordinate == 8) && (columnCoordinate == 7)) ||
+             ( (row Coordinate == 8) && (columnCoordinate == 8)) ) {
+
+            return false;
+            }
+            else {
+            return true;
+            }
+
+
+    }
+
+
+
+     */
+
+    /**
+     * This method tests if the FinalSquareWithTargetTileHaveAnotherRobotByItToStopIntendedDirection
+     * @param intendedDirection
+     * @param squareWithTargetTile
+     * @param theCurrentGameBoard
+     * @return
+     */
+    private boolean doesFinalSquareWithTargetTileHaveAnotherRobotByItToStopIntendedDirection(String intendedDirection, Square squareWithTargetTile, GameBoard theCurrentGameBoard){
+        //First we need to get the square from the gameboard that is adjacent to the target tile square and in the
+        //same direction as the intended direction of the moving robot.
+
+        Location targetTileSquaresLocation = squareWithTargetTile.getSquaresRowColumnLocation();
+        Location squareWithPotentialBlockingRobotLocation = new Location(-1, -1);//Default location does not exist. We will change here.
+
+        if (intendedDirection.equals("NORTH")){
+            squareWithPotentialBlockingRobotLocation.changeRowCoordinate(targetTileSquaresLocation.getRowCoordinate() + 1);
+            squareWithPotentialBlockingRobotLocation.changeColumnCoordinate(targetTileSquaresLocation.getColumnCoordinate());
+        }
+        else if (intendedDirection.equals("SOUTH")){
+            squareWithPotentialBlockingRobotLocation.changeRowCoordinate(targetTileSquaresLocation.getRowCoordinate() - 1);
+            squareWithPotentialBlockingRobotLocation.changeColumnCoordinate(targetTileSquaresLocation.getColumnCoordinate());
+        }
+        else if (intendedDirection.equals("EAST")){
+            squareWithPotentialBlockingRobotLocation.changeRowCoordinate(targetTileSquaresLocation.getRowCoordinate());
+            squareWithPotentialBlockingRobotLocation.changeColumnCoordinate(targetTileSquaresLocation.getColumnCoordinate() + 1);
+        }
+        else if (intendedDirection.equals("WEST")){
+            squareWithPotentialBlockingRobotLocation.changeRowCoordinate(targetTileSquaresLocation.getRowCoordinate());
+            squareWithPotentialBlockingRobotLocation.changeColumnCoordinate(targetTileSquaresLocation.getColumnCoordinate() - 1);
+        }
+
+        //Next, does this square exist to be walkable?
+        if (theCurrentGameBoard.doesThisWalkableSquareCoordinateExist() == false){
+            return false; //TODO Check if returning this is correct.
+        }
+        //Else, keep going.
+
+        //Finally, is there a robot on this square
+        if (theCurrentGameBoard.getSquare... is tehre a robot == false){
+            return false;
+        }
+        else{
+            return true;
+        }
 
     }
 
@@ -263,5 +404,20 @@ public class MakingBidsProcess {
 
 
 */
+
+    /*
+
+
+
+     */
+
+    /**
+     * This method recieves an array of squares clicked in the order the player from start to every time it
+     * richochet, until it hit the target.
+     * @return
+     */
+    public Square[] getFullPathFromPlayersFewClicks(Square [] playersClickedSquares, Gameboard theGameboard){
+        //First determine
+    }
 
 }
