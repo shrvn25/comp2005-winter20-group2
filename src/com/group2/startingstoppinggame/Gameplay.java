@@ -1,7 +1,9 @@
 package com.group2.startingstoppinggame;
 
 import com.group2.gui.GameSettings;
+import com.group2.javaCode.Robot;
 import com.group2.physicalgameobjects.*;
+import com.group2.gameplayrules.*;
 
 /**
  * This class creates a new gameplay for the game. It takes the settings recorded in the GameSettings and then creates
@@ -17,6 +19,7 @@ public class Gameplay {
     TargetChip multicoloredTargetChip;
     GameSettings theRecordedGameSettings;
     CurrentGamePlay theCurrentGameplay;
+    Timer biddingTimer;
     GameBoard theGameBoard;
 
 
@@ -35,6 +38,21 @@ public class Gameplay {
 
         //Start the Gameplay
 
+        //When a Player makes the first bid
+
+        this.biddingTimer.startTime();
+
+        while (this.biddingTimer.hasBiddingTimeStopped() == false){
+
+        }
+
+        //After this, the timer has stopped.
+
+
+
+
+
+
 
 
 
@@ -42,6 +60,44 @@ public class Gameplay {
 
 
     }
+
+    /**
+     * This worker method returns what player had the lower bid.
+     * @return
+     */
+    private Player getPlayerWithCurrentLowestBid(){
+
+        int currentLowestBid = player1.getBidNumber();
+        Player currentPlayerWithLowestBid = player1;
+
+        if (currentLowestBid > player2.getBidNumber()){
+            currentLowestBid = player2.getBidNumber();
+            currentPlayerWithLowestBid = player2;
+        }
+
+        if (currentLowestBid > player3.getBidNumber()) {
+            currentLowestBid = player3.getBidNumber();
+            currentPlayerWithLowestBid = player3;
+        }
+
+        if (currentLowestBid > player4.getBidNumber(){
+            currentLowestBid = player4.getBidNumber();
+            currentPlayerWithLowestBid = player4;
+        }
+
+        return currentPlayerWithLowestBid;
+    }
+
+    private Player getPlayerWithNextLowestBid(){
+
+    }
+
+    public void aPlayersMakesFIRSTBidButtonIsClicked(Player playerWhoMa{
+        //boolean timerHasStopped = false;
+        //Start the timer
+
+
+    })
 
 
     /**
@@ -52,6 +108,14 @@ public class Gameplay {
         createAllNewPlayers();
         createAllTokens();
         createTheSelectedBoard();
+        initializeTimer();
+    }
+
+    /**
+     * This method initializes a new timer object for the whole game.
+     */
+    private void initializeTimer(){
+        this.biddingTimer = new Timer();
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.group2.physicalgameobjects;
 
+import com.group2.javaCode.Robot;
+
 import java.util.ArrayList;
 
 /**
@@ -17,6 +19,7 @@ public class Player {
     private int playerID;
     private int tokenCount;
     private Robot playersRobot;
+    private int bidNumber;
 
     private ArrayList<TargetChip> playersCollectedTargetChips;
 
@@ -37,6 +40,7 @@ public Player(){
     this.playerID = -1;
     this.playersCollectedTargetChips = new ArrayList<TargetChip>();
     this.location = new int[-1][-1];
+    this.bidNumber = -1;
 }
 //METHODS
 
@@ -141,6 +145,15 @@ public Player(){
 
     public setImageFileLocation(String imageFileLocation){
 
+    }
+
+
+    public int getBidNumber(){
+        return this.bidNumber;
+    }
+
+    public void setBidNumber(int newBidNumber){
+        this.bidNumber = newBidNumber;
     }
 
 

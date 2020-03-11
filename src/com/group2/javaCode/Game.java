@@ -1,6 +1,4 @@
-package com.group2.startingstoppinggame;
-
-import gui.StartMenuGUI;
+package com.group2.javaCode;
 
 public class Game {
 

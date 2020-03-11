@@ -1,4 +1,4 @@
-package gui;
+package com.group2.javaCode;
 
 import javax.swing.*;
 import java.awt.*;

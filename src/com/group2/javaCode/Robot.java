@@ -1,4 +1,4 @@
-package com.group2.physicalgameobjects;
+package com.group2.javaCode;
 
 import com.group2.physicalgameobjects.Location;
 /**

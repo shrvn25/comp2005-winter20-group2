@@ -1,8 +1,7 @@
 package com.group2.gameplayrules;
 
-import java.util.*;
 
-
+import com.group2.javaCode.Robot;
 import com.group2.physicalgameobjects.*;
 
 import java.util.ArrayList;
@@ -164,6 +163,8 @@ public class MakingBidsProcess {
 
 
     }
+
+
 
     /**
      * This method takes an arrayList with Square elements and returns as array of Square elements from the
