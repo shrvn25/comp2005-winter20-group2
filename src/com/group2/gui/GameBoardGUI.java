@@ -14,7 +14,7 @@ packagimport com.group2.gui.GridSquare;
 com.group2.gui.GridSquare; */
 
 
-public class GameBoard extends JFrame implements ActionListener
+public class GameBoardGUI extends JFrame implements ActionListener
 {
 
     //public static final int dim = 16;
@@ -35,7 +35,7 @@ public class GameBoard extends JFrame implements ActionListener
      *  it makes sure that action listeners are added to selectable items
      *  it makes sure that the gui will be visible
      */
-    public GameBoard(int x, int y)
+    public GameBoardGUI(int x, int y)
     {
         this.x = x;
         this.y = y;

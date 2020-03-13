@@ -175,7 +175,7 @@ public class SetupPlayersGUI extends JFrame implements ActionListener{
         Object event= e.getSource();
         if(event== startButton){
             super.dispose();
-            gui.GameBoard gameboard= new gui.GameBoard(16,16);
+            gui.GameBoardGUI gameboard= new gui.GameBoardGUI(16,16);
 
         }
 
