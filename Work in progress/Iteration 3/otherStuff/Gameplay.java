@@ -13,7 +13,7 @@ import com.group2.gameplayrules.*;
  */
 
 public class Gameplay {
-    Player player1, player2, player3, player4, player5;
+    Player player1, player2, player3, player4;
     RobotPieces redStarRobot, greenSquareRobot, yellowCircleRobot, blueHalfMoonRobot;
     TargetChip redStarTargetChip, redCircleTargetChip, redSquareTargetChip, redHalfMoonTargetChip;
     TargetChip greenStarTargetChip, greenCircleTargetChip, greenSquareTargetChip, greenHalfMoonTargetChip;

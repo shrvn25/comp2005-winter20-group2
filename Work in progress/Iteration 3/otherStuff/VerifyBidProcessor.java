@@ -17,11 +17,13 @@ public class VerifyBidProcessor {
     RobotPieces robotToMove;
     GridSquare squareWithTargetTile;
 
-    public VerifyBidProcessor(int newBidNumber,  GridSquare[] newListOfSquaresMovedInOrder, RobotPieces newRobotToMove, GridSquare newSquareWithTargetTile){
+    public VerifyBidProcessor(int newBidNumber, GridSquare[] newListOfSquaresMovedInOrder, RobotPieces newRobotToMove, GridSquare newSquareWithTargetTile){
         this.bidNumber = newBidNumber;
         this.listOfSquaresMovedInOrder = newListOfSquaresMovedInOrder;
         this.robotToMove = newRobotToMove;
         this.squareWithTargetTile = newSquareWithTargetTile;
+
+
     }
 
 
@@ -29,25 +31,27 @@ public class VerifyBidProcessor {
      * This method returns true if the order of squares the player clicked were valid (legal), and that they actually reached and stopped
      * at the target square (accurate).
      */
-/*
-    public boolean wereMovesLegalAndAccurate(int bidNumber, GridSquare[] listOfSquaresMovedInOrder, RobotPieces robotToMove, GridSquare squareWithTargetTile){
 
-        if ( doesPlayerClickTheirOwnRobotFirst() == false){
+    public boolean wereMovesLegalAndAccurate(int bidNumber, GridSquare[] listOfSquaresMovedInOrder, RobotPieces robotToMove, GridSquare squareWithTargetTile) {
+
+        if (doesPlayerClickTheirOwnRobotFirst() == false) {
             return false;
-        }
-        else if (doesPlayerClickTheSquareWithTargetTileLast() == false){
+        } else if (doesPlayerClickTheSquareWithTargetTileLast() == false) {
             return false;
-        }
-        else {
+        } else {
             //Going through the list for every pair of adjacent gridsquares:
-            if(doesPlayerMoveThroughABlackBarrier() == false){
+            if (doesPlayerMoveThroughABlackBarrier() == false) {
                 return false;
-            }
-            else if (doesPlayerGoStraightThroughDiaBarrierOfDIfferentColor() == true){
+            } else if (doesPlayerGoStraightThroughDiaBarrierOfDIfferentColor() == true) {
                 return false;
             }
 
         }
+    }
+
+    private boolean doesPlayerClickTheirOwnRobotFirst(){
+
+    }
 
         //One move is going in a straight line until it hits a barrier. There has to be more than one move to make it a legal series of moves.
 
