@@ -9,7 +9,8 @@ public class RobotPieces {
     private String color;
     private String shape;
 
-    private Location robotLocation;
+    private int rowCoord;
+    private int columnCoord;
     //private int [][] robotsRowColumnLocation;
 
     /**
@@ -19,8 +20,8 @@ public class RobotPieces {
     public RobotPieces(String newColor, String newShape){ //TODO this is new now with color and shape inputs
         this.color = newColor;
         this.shape = newShape;
-        this.robotLocation.changeRowCoordinate(-1);
-        this.robotLocation.changeColumnCoordinate(-1);
+        this.rowCoord = -1;
+        this.columnCoord = -1;
         //this.robotsRowColumnLocation = new int[rowLocation][columnLocation];
     }
 
@@ -61,16 +62,16 @@ public class RobotPieces {
         this.shape = newShape;
     }
 
-    public Location getRobotLocation(){
-        return this.robotLocation;
+    public int getRobotRowCoord(){
+        return this.rowCoord;
     }
 
     public void setRobotRowCoordinate(int newRowCoordinate){
-        this.robotLocation.changeRowCoordinate(newRowCoordinate);
+        this.rowCoord = newRowCoordinate;
     }
 
     public void setRobotColumnCoordinate(int newColumnCoordinate){
-        this.robotLocation.changeColumnCoordinate(newColumnCoordinate);
+        this.columnCoord = newColumnCoordinate;
     }
 /*
     public int[][] getCurrentRowColumnLocation(){
