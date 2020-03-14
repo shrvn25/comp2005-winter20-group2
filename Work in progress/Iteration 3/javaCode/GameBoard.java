@@ -27,6 +27,8 @@ private TargetTile greenCircleTargetTile, greenHexTargetTile, greenSquareTargetT
 private TargetTile redCircleTargetTile, redHexTargetTile, redSquareTargetTile, redTriangleTargetTile;
 private TargetTile yellowCircleTargetTile, yellowHexTargetTile, yellowSquareTargetTile, yellowTriangleTargetTile;
 private TargetTile vortexTargetTile;
+private ImageIcon redRobotIcon, greenRobotIcon, yellowRobotIcon, blueRobotIcon;
+private RobotPieces redRobot, greenRobot, yellowRobot, blueRobot;
 
 
 
@@ -46,7 +48,9 @@ public GameBoard(int x, int y)
     createPanels();
     createButtonsWithIconsAndTargetTilesAndAddToGrid();
     setupVisualAndLogicalBorders();
+    addRobotIconsAndRobotsToStartingPositions();
     addPanelsToGetContentPane();
+
 
     // housekeeping : behaviour
     setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
@@ -591,6 +595,34 @@ private void setupVisualAndLogicalBorders(){
     gridSquares[8][8].setBorder(BorderFactory.createMatteBorder(0,0,8,8,Color.BLACK));
     gridSquares[8][8].addSouthEdgeBarrier();
     gridSquares[8][8].addEastEdgeBarrier();
+}
+
+private void addRobotIconsAndRobotsToStartingPositions(){
+    //redRobotIcon = ;
+    //greenRobotIcon
+    //yellowRobotIcon
+    //blueRobotIcon
+
+    redRobot = new RobotPieces("RED", "STAR");
+    redRobot.setRobotRowCoordinate(11);
+    redRobot.setRobotColumnCoordinate(3);
+    gridSquares[11][3].addRobotToSquare(redRobot);
+
+    greenRobot = new RobotPieces("GREEN", "");
+    greenRobot.setRobotRowCoordinate(5);
+    greenRobot.setRobotColumnCoordinate(13);
+    gridSquares[5][13].addRobotToSquare(greenRobot);
+
+    yellowRobot = new RobotPieces("YELLOW", "");
+    yellowRobot.setRobotRowCoordinate(3);
+    yellowRobot.setRobotColumnCoordinate(10);
+    gridSquares[3][10].addRobotToSquare(yellowRobot);
+
+    blueRobot = new RobotPieces("BLUE", "");
+    blueRobot.setRobotRowCoordinate(0);
+    blueRobot.setRobotColumnCoordinate(0);
+    gridSquares[0][0].addRobotToSquare(blueRobot);
+
 }
 
 
