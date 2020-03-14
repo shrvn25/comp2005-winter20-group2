@@ -1,6 +1,7 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class GameBoard extends JFrame implements ActionListener
@@ -32,6 +33,7 @@ public GameBoard(int x, int y)
     this.x = x;
     this.y = y;
     this.setSize(1200,800);
+
     //blue icons
     ImageIcon blueCircle =new ImageIcon("bluecircle.jpg");
     ImageIcon blueHex =new ImageIcon("bluehex.jpg");
@@ -54,17 +56,17 @@ public GameBoard(int x, int y)
     ImageIcon yellowTriangle =new ImageIcon("yellowtriangle.jpg");
 
     ImageIcon vortex =new ImageIcon("vortex.jpeg");
-   
+
     // first create the panels
     topPanel = new JPanel();
     topPanel.setLayout( new FlowLayout());
-    
+
     bottomPanel = new JPanel();
     bottomPanel.setLayout( new GridLayout( x, y));
     bottomPanel.setSize(800,800);
-    
+
     // then create the components for each panel and add them to it
-    
+
     // for the top panel:
     topLabel = new JLabel("Make a bid!");
     topLabel2 = new JLabel("Timer starts when a bid is made.");
@@ -82,7 +84,7 @@ public GameBoard(int x, int y)
 
     movesList2= new JComboBox<Integer>();
 
-    
+
     movesList3= new JComboBox<Integer>();
 
 
@@ -103,7 +105,7 @@ public GameBoard(int x, int y)
     player2= new JLabel("Player 2: ");
     player3= new JLabel("Player 3: ");
     player4= new JLabel("Player 4: ");
-    
+
     playerPanel.add( topLabel);
     playerPanel.add( topLabel2);
     playerPanel.add( topLabel3);
@@ -118,16 +120,16 @@ public GameBoard(int x, int y)
     playerPanel.add(movesList3);
     playerPanel.add(player4);
     playerPanel.add(movesList4);
-    
-    
+
+
     //topPanel.add(player1Label);
     //topPanel.add(player2Label);
     //topPanel.add(player3Label);
     //topPanel.add(player4Label);
     //topPanel.add ( topButton);
-    
 
-    // for the bottom panel:	
+
+    // for the bottom panel:
     // create the buttons and add them to the grid
     gridSquares = new GridSquare [x][y];
     for ( int column = 0; column < x; column ++){
@@ -136,10 +138,10 @@ public GameBoard(int x, int y)
             gridSquares [column][row].setSize( 20, 20);
             gridSquares [column][row].setColor( column + row);
             gridSquares [column][row].setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
- 
-            
+
+
             //gridSquares [column][row].addMouseListener( this);		// AGAIN, don't forget this line!
-            
+
             bottomPanel.add( gridSquares [column][row]);
         }
     }
@@ -161,10 +163,15 @@ public GameBoard(int x, int y)
     gridSquares [15][15].setBorder(BorderFactory.createMatteBorder(1,1,4,4,Color.black));
     //set Target Tiles
     gridSquares[1][4].setIcon(new ImageIcon(redCricle.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
+    gridSquares[1][4].addTargetTileToSquare("RED", "CIRCLE");
     gridSquares[1][13].setIcon(new ImageIcon(redSquare.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
+    gridSquares[1][13].addTargetTileToSquare("RED", "SQUARE");
     gridSquares[2][1].setIcon(new ImageIcon(greenTriangle.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
+    gridSquares[2][1].addTargetTileToSquare("GREEN", "TRIANGLE");
     gridSquares[2][9].setIcon(new ImageIcon(blueTriangle.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
+    gridSquares[2][9].addTargetTileToSquare("BLUE", "TRIANGLE");
     gridSquares[3][6].setIcon(new ImageIcon(yellowHex.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
+    gridSquares[3][6].addTargetTileToSquare();
     gridSquares[5][14].setIcon(new ImageIcon(greenHex.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
     gridSquares[6][3].setIcon(new ImageIcon(blueSquare.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
     gridSquares[6][11].setIcon(new ImageIcon(yellowCricle.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
@@ -177,6 +184,16 @@ public GameBoard(int x, int y)
     gridSquares[13][5].setIcon(new ImageIcon(redHex.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
     gridSquares[13][10].setIcon(new ImageIcon(blueHex.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
     gridSquares[14][3].setIcon(new ImageIcon(yellowTriangle.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
+
+    gridSquares[1][4].addTargetTileToSquare("RED", "CIRCLE");
+    gridSquares[1][13].addTargetTileToSquare();
+    gridSquares[2][1]
+    gridSquares[2][9]
+    gridSquares[3][6]
+    gridSquares[5][14]
+    gridSquares[6][3]
+    gridSquares[6][11]
+    gridSquares[8][5]
     //set the exterior barriers
     gridSquares[0][1].setBorder(BorderFactory.createMatteBorder(4,1,1,6,Color.BLACK));
     gridSquares[0][2].setBorder(BorderFactory.createMatteBorder(4,6,1,1,Color.BLACK));
@@ -269,18 +286,18 @@ public GameBoard(int x, int y)
     gridSquares[11][12].setBorder(BorderFactory.createMatteBorder(1,1,1,6,Color.BLACK));
     gridSquares[11][13].setBorder(BorderFactory.createMatteBorder(1,6,6,1,Color.BLACK));
     gridSquares[12][13].setBorder(BorderFactory.createMatteBorder(6,1,1,1,Color.BLACK));
-    
+
     gridSquares[7][7].setBorder(BorderFactory.createMatteBorder(8,8,0,0,Color.BLACK));
     gridSquares[7][8].setBorder(BorderFactory.createMatteBorder(8,0,0,8,Color.BLACK));
     gridSquares[8][7].setBorder(BorderFactory.createMatteBorder(0,8,8,0,Color.BLACK));
     gridSquares[8][8].setBorder(BorderFactory.createMatteBorder(0,0,8,8,Color.BLACK));
-    
+
     // now add the top and bottom panels to the main frame
     getContentPane().setLayout( new BorderLayout());
     getContentPane().add( topPanel, BorderLayout.EAST);
     getContentPane().add( bottomPanel, BorderLayout.CENTER);		// needs to be center or will draw too small
     getContentPane().add( playerPanel, BorderLayout.EAST);
-    
+
     // housekeeping : behaviour
     setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
     setResizable( false);
