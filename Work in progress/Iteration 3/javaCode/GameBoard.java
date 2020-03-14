@@ -99,27 +99,27 @@ public void actionPerformed (ActionEvent aevt)
 
 private void createIconObjects(){
     //blue icons
-    ImageIcon blueCircle =new ImageIcon("bluecircle.jpg");
-    ImageIcon blueHex =new ImageIcon("bluehex.jpg");
-    ImageIcon blueSquare =new ImageIcon("bluesquare.jpg");
-    ImageIcon blueTriangle =new ImageIcon("bluetriangle.jpg");
+    blueCircleIcon =new ImageIcon("bluecircle.jpg");
+    blueHexIcon =new ImageIcon("bluehex.jpg");
+    blueSquareIcon =new ImageIcon("bluesquare.jpg");
+    blueTriangleIcon =new ImageIcon("bluetriangle.jpg");
     //green icons
-    ImageIcon greenCircle =new ImageIcon("greencircle.jpg");
-    ImageIcon greenHex =new ImageIcon("greenhex.jpg");
-    ImageIcon greenSquare =new ImageIcon("greensquare.jpg");
-    ImageIcon greenTriangle =new ImageIcon("greentriangle.jpg");
+    greenCircleIcon =new ImageIcon("greencircle.jpg");
+    greenHexIcon =new ImageIcon("greenhex.jpg");
+    greenSquareIcon =new ImageIcon("greensquare.jpg");
+    greenTriangleIcon =new ImageIcon("greentriangle.jpg");
     //red icons
-    ImageIcon redCircle =new ImageIcon("redcircle.jpg");
-    ImageIcon redHex =new ImageIcon("redhex.jpg");
-    ImageIcon redSquare =new ImageIcon("redsquare.jpg");
-    ImageIcon redTriangle =new ImageIcon("redtriangle.jpg");
+    redCircleIcon =new ImageIcon("redcircle.jpg");
+    redHexIcon =new ImageIcon("redhex.jpg");
+    redSquareIcon =new ImageIcon("redsquare.jpg");
+    redTriangleIcon =new ImageIcon("redtriangle.jpg");
     //yellow icons
-    ImageIcon yellowCircle =new ImageIcon("yellowcircle.jpg");
-    ImageIcon yellowHex =new ImageIcon("yellowhex.jpg");
-    ImageIcon yellowSquare =new ImageIcon("yellowsquare.jpg");
-    ImageIcon yellowTriangle =new ImageIcon("yellowtriangle.jpg");
+    yellowCircleIcon =new ImageIcon("yellowcircle.jpg");
+    yellowHexIcon =new ImageIcon("yellowhex.jpg");
+    yellowSquareIcon =new ImageIcon("yellowsquare.jpg");
+    yellowTriangleIcon =new ImageIcon("yellowtriangle.jpg");
 
-    ImageIcon vortex =new ImageIcon("vortex.jpeg");
+    vortexIcon =new ImageIcon("vortex.jpeg");
 }
 
 private void createPanels(){

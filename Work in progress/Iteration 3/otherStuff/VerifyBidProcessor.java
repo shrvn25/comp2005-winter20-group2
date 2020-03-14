@@ -29,7 +29,7 @@ public class VerifyBidProcessor {
      * This method returns true if the order of squares the player clicked were valid (legal), and that they actually reached and stopped
      * at the target square (accurate).
      */
-
+/*
     public boolean wereMovesLegalAndAccurate(int bidNumber, GridSquare[] listOfSquaresMovedInOrder, RobotPieces robotToMove, GridSquare squareWithTargetTile){
 
         if ( doesPlayerClickTheirOwnRobotFirst() == false){
@@ -171,6 +171,7 @@ public class VerifyBidProcessor {
      * @param listOfSquaresMovedInOrder This array must be of length 2 or greater.
      * @return
      */
+/*
     private int countNumberOfMovesOnSimpleBoard(GridSquare [] listOfSquaresMovedInOrder){
         int numberOfMoves = 0;
 
@@ -294,6 +295,7 @@ public class VerifyBidProcessor {
      * @param theCurrentGameBoard
      * @return
      */
+    /*
     private boolean doesFinalSquareWithTargetTileHaveAnotherRobotByItToStopIntendedDirection(String intendedDirection, GridSquare squareWithTargetTile, GameBoard theCurrentGameBoard){
         //First we need to get the square from the gameboard that is adjacent to the target tile square and in the
         //same direction as the intended direction of the moving robot.
@@ -342,6 +344,9 @@ public class VerifyBidProcessor {
      * @return
      */
 
+    /*
+
+
     private String returnIntendedDirection(GridSquare startingSquare, GridSquare endingSquare){
         int rowCoordinateStartSquare = startingSquare.getSquaresRowColumnLocation().getRowCoordinate();
         int columnCoordinateStartSquare = startingSquare.getSquaresRowColumnLocation().getColumnCoordinate();
@@ -372,6 +377,7 @@ public class VerifyBidProcessor {
      * @param endingSquare
      * @return
      */
+    /*
     private boolean isThereABarrierBlockingIntendedDirection(GridSquare startingSquare, GridSquare endingSquare) {
         String direction = returnIntendedDirection(startingSquare, endingSquare);
 
@@ -396,7 +402,7 @@ public class VerifyBidProcessor {
      * @param listOfSquaresInOrder
      * @return
      */
-
+/*
     private boolean willPlayerLaterIntendToMovePerpendicular(int currentSquareIndex, int nextSquareIndex, Square [] listOfSquaresInOrder){
         GridSquare currentSquare = listOfSquaresInOrder[currentSquareIndex];
         GridSquare nextSquare = listOfSquaresInOrder[nextSquareIndex];
@@ -533,7 +539,7 @@ public class VerifyBidProcessor {
 
 
      */
-
+/*
 private boolean checkDiagonalBarrierMovement(){
     
 }
@@ -546,6 +552,7 @@ private boolean checkDiagonalBarrierMovement(){
  * @param playersRobot
  * @return
  */
+/*
      private boolean arePlayersRobotAndNextSquaresDiagBarrierColorsSame(int indexOfCurrentSquare, Square [] listOfClickedSquares, RobotPieces playersRobot){
 
          GridSquare nextSquare = listOfClickedSquares[indexOfCurrentSquare + 1];
@@ -566,6 +573,7 @@ private boolean checkDiagonalBarrierMovement(){
      * richochet, until it hit the target.
      * @return
      */
+/*
     public Square[] getFullPathFromPlayersFewClicks(Square [] playersClickedSquares, Gameboard theGameboard){
         //First determine
     }
