@@ -15,7 +15,7 @@ public class GameBoard extends JFrame implements ActionListener
 // gui components that are contained in this frame:
 private JPanel sidePanel, bottomPanel, topPanel, playerPanel;	// top and bottom panels in the main window
 private JLabel sideLabel, topLabel,topLabel2,topLabel3,topLabel4,  player1, player2, player3, player4;				// a text label to appear in the top panel
-private JButton topButton;				// a 'reset' button to appear in the top panel
+private JButton topButton, startBiddingButton;				// a 'reset' button to appear in the top panel
 private GridSquare [][] gridSquares;	// squares to appear in grid formation in the bottom panel
 private int x,y;						// the size of the grid
 private JComboBox<Integer> movesList1, movesList2, movesList3, movesList4 ;
@@ -29,6 +29,7 @@ private TargetTile yellowCircleTargetTile, yellowHexTargetTile, yellowSquareTarg
 private TargetTile vortexTargetTile;
 private ImageIcon redRobotIcon, greenRobotIcon, yellowRobotIcon, blueRobotIcon;
 private RobotPieces redRobot, greenRobot, yellowRobot, blueRobot;
+
 
 
 
@@ -49,6 +50,7 @@ public GameBoard(int x, int y)
     createButtonsWithIconsAndTargetTilesAndAddToGrid();
     setupVisualAndLogicalBorders();
     addRobotIconsAndRobotsToStartingPositions();
+    //addStartBiddingButton();
     addPanelsToGetContentPane();
 
 
@@ -138,9 +140,19 @@ private void createPanels(){
     topLabel2 = new JLabel("Timer starts when a bid is made.");
     topLabel3 = new JLabel("Timer");
     topLabel4 = new JLabel("01:00");
-    topButton = new JButton("");
-    topButton.addActionListener( this);			// IMPORTANT! Without this, clicking the button does nothing.
-    topPanel.add( topLabel);
+    //topButton = new JButton("");
+    //topButton.addActionListener( this);			// IMPORTANT! Without this, clicking the button does nothing.
+
+    startBiddingButton = new JButton("Start Bidding Round!");
+    startBiddingButton.addActionListener(this);
+
+    topPanel.add(startBiddingButton);
+    topPanel.add(topLabel2);
+    topPanel.add(topLabel3);
+    topPanel.add(topLabel4);
+    //topPanel.add( topLabel);
+
+
 
     playerPanel= new JPanel(new GridLayout(6,2));
     playerPanel.setSize(100,800);
@@ -172,7 +184,7 @@ private void createPanels(){
     player3= new JLabel("Player 3: ");
     player4= new JLabel("Player 4: ");
 
-    playerPanel.add( topLabel);
+    playerPanel.add(startBiddingButton);
     playerPanel.add( topLabel2);
     playerPanel.add( topLabel3);
     playerPanel.add( topLabel4);
