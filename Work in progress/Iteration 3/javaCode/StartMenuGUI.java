@@ -60,7 +60,8 @@ public class StartMenuGUI extends JFrame implements ActionListener{
 
         }
         else if(x== loadSavedGameButton){
-
+            super.dispose();
+            GameBoard newGameBoard = new GameBoard(16,16);
         }
     }
 
