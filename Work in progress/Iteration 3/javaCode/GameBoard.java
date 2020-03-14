@@ -602,6 +602,7 @@ private void addRobotIconsAndRobotsToStartingPositions(){
     //greenRobotIcon
     //yellowRobotIcon
     //blueRobotIcon
+    //TODO need to finish adding icons here
 
     redRobot = new RobotPieces("RED", "STAR");
     redRobot.setRobotRowCoordinate(11);
