@@ -14,7 +14,7 @@ public class GameBoard extends JFrame implements ActionListener
     //private static final Color COL_WALL = new Color(85, 85, 85);
 // gui components that are contained in this frame:
 private JPanel sidePanel, bottomPanel, topPanel, playerPanel;	// top and bottom panels in the main window
-private JLabel sideLabel, topLabel,topLabel2,topLabel3,topLabel4,  player1, player2, player3, player4;				// a text label to appear in the top panel
+private JLabel sideLabel, topLabel,topLabel2,topLabel3,topLabel4, player1Label, player2Label, player3Label, player4Label;				// a text label to appear in the top panel
 private JButton topButton, startBiddingButton;				// a 'reset' button to appear in the top panel
 private GridSquare [][] gridSquares;	// squares to appear in grid formation in the bottom panel
 private int x,y;						// the size of the grid
@@ -29,6 +29,8 @@ private TargetTile yellowCircleTargetTile, yellowHexTargetTile, yellowSquareTarg
 private TargetTile vortexTargetTile;
 private ImageIcon redRobotIcon, greenRobotIcon, yellowRobotIcon, blueRobotIcon;
 private RobotPieces redRobot, greenRobot, yellowRobot, blueRobot;
+private Player player1, player2, player3, player4, playerWithLowestBid;
+//private VerifyBidProcessor verifyBidProcessor;
 
 
 
@@ -58,6 +60,10 @@ public GameBoard(int x, int y)
     setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
     setResizable( false);
     setVisible( true);
+
+
+    createPlayersAndConnectRobots();
+
 }
 
 
@@ -66,10 +72,28 @@ public GameBoard(int x, int y)
  *  handles actions performed in the gui
  *  this method must be present to correctly implement the ActionListener interface
  */
-public void actionPerformed (ActionEvent aevt)
+public void actionPerformed (ActionEvent actionEvent)
 {
     // get the object that was selected in the gui
-    Object selected = aevt.getSource();
+    Object selected = actionEvent.getSource();
+
+    if (selected.equals(startBiddingButton)){
+        startBiddingRound();
+    }
+    else if (selected.equals(movesList1)){
+        player1.setBidNumber( movesList1.getSelectedIndex() );
+    }
+    else if (selected.equals(movesList2)){
+        player2.setBidNumber( movesList2.getSelectedIndex() );
+    }
+    else if (selected.equals(movesList3)){
+        player3.setBidNumber( movesList3.getSelectedIndex() );
+    }
+    else if (selected.equals(movesList4)){
+        player4.setBidNumber( movesList4.getSelectedIndex() );
+    }
+
+
     
     /*
      * I'm using instanceof here so that I can easily cover the selection of any of the gridsquares
@@ -77,7 +101,7 @@ public void actionPerformed (ActionEvent aevt)
      * In a real system you'll probably have one piece of action code per selectable item.
      * Later in the course we'll see that the Command Holder pattern is a much smarter way to handle actions.
      */
-    
+    /*
     // if a gridsquare is selected then switch its color
     if ( selected instanceof GridSquare)
     {
@@ -95,6 +119,8 @@ public void actionPerformed (ActionEvent aevt)
             }
         }
     }
+    */
+
 }
 
 
@@ -179,10 +205,10 @@ private void createPanels(){
 
 
     //Labels for the Number of Players
-    player1= new JLabel("Player 1: ");
-    player2= new JLabel("Player 2: ");
-    player3= new JLabel("Player 3: ");
-    player4= new JLabel("Player 4: ");
+    player1Label = new JLabel("Player 1: ");
+    player2Label = new JLabel("Player 2: ");
+    player3Label = new JLabel("Player 3: ");
+    player4Label = new JLabel("Player 4: ");
 
     playerPanel.add(startBiddingButton);
     playerPanel.add( topLabel2);
@@ -190,13 +216,13 @@ private void createPanels(){
     playerPanel.add( topLabel4);
     //playerPanel.add( topLabel3);
     //Adding all the components
-    playerPanel.add(player1);
+    playerPanel.add(player1Label);
     playerPanel.add(movesList1);
-    playerPanel.add(player2);
+    playerPanel.add(player2Label);
     playerPanel.add(movesList2);
-    playerPanel.add(player3);
+    playerPanel.add(player3Label);
     playerPanel.add(movesList3);
-    playerPanel.add(player4);
+    playerPanel.add(player4Label);
     playerPanel.add(movesList4);
 
 
@@ -646,4 +672,98 @@ private void addPanelsToGetContentPane(){
     getContentPane().add( bottomPanel, BorderLayout.CENTER);		// needs to be center or will draw too small
     getContentPane().add( playerPanel, BorderLayout.EAST);
 }
+
+private void createPlayersAndConnectRobots(){
+    player1 = new Player();
+    player2 = new Player();
+    player3 = new Player();
+    player4 = new Player();
+
+    //TODO Set all to human now, THIS WILL NEED TO BE CHANGED to connect to game settings.
+
+    player1.setPlayerTypeToHuman();
+    player2.setPlayerTypeToHuman();
+    player3.setPlayerTypeToHuman();
+    player4.setPlayerTypeToHuman();
+
+    player1.setPlayersRobot(redRobot);
+    player2.setPlayersRobot(greenRobot);
+    player3.setPlayersRobot(yellowRobot);
+    player4.setPlayersRobot(blueRobot);
+}
+
+private void startBiddingRound(){
+    Timer biddingTimer = new Timer();
+
+    int currentPlayer1Bid = 0;
+    int currentPlayer2Bid = 0;
+    int currentPlayer3Bid = 0;
+    int currentPlayer4Bid = 0;
+
+    biddingTimer.startTime();
+
+    while (biddingTimer.hasBiddingTimeStopped == false){
+        if (currentPlayer1Bid != player1.getBidNumber()){
+            currentPlayer1Bid = player1.getBidNumber();
+        }
+        if (currentPlayer2Bid != player2.getBidNumber()){
+            currentPlayer2Bid = player1.getBidNumber();
+        }
+        if (currentPlayer3Bid != player3.getBidNumber()){
+            currentPlayer3Bid = player3.getBidNumber();
+        }
+        if (currentPlayer4Bid != player4.getBidNumber()){
+            currentPlayer4Bid = player4.getBidNumber();
+        }
+    }
+
+    playerWithLowestBid = new Player();
+    playerWithLowestBid = determinePlayerWithLowestBid();
+
+
+    //TODO Now get that person to click through their squares
+    //DUMMY CODE Will need to be removed.
+    GridSquare [] squaresPlayerClicked = {new GridSquare(-1, -1), new GridSquare(-1, -1), new GridSquare(-1, -1)};
+
+    //DummyCode
+    GridSquare squareWithCurrentTargetTile = new GridSquare(-1, -1);
+
+
+   // VerifyBidProcessor verifyBidProcessor = new VerifyBidProcessor(playerWithLowestBid.getBidNumber(), squaresPlayerClicked, playerWithLowestBid.getPlayersRobot(), squareWithCurrentTargetTile);
+
+   // if (verifyBidProcessor.wereMovesLegalAndAccurate() == true){
+        //
+  //  }
+
+
+
+
+
+    //How to disable players bids?
+
+}
+
+
+private Player determinePlayerWithLowestBid(){
+    int currentLowestBid = player1.getBidNumber();
+    Player currentPlayerWithLowestBid = player1;
+
+    if (currentLowestBid > player2.getBidNumber()){
+        currentLowestBid = player2.getBidNumber();
+        currentPlayerWithLowestBid = player2;
+    }
+
+    if (currentLowestBid > player3.getBidNumber()) {
+        currentLowestBid = player3.getBidNumber();
+        currentPlayerWithLowestBid = player3;
+    }
+
+    if (currentLowestBid > player4.getBidNumber()){
+        currentLowestBid = player4.getBidNumber();
+        currentPlayerWithLowestBid = player4;
+    }
+
+    return currentPlayerWithLowestBid;
+}
+
 }

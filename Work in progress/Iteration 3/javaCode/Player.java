@@ -14,7 +14,7 @@ public class Player {
 
     private String playerType;
     private String playerName;
-    private Location location;
+
 
     private int playerID;
     private int tokenCount;
@@ -39,7 +39,7 @@ public Player(){
     this.playersRobot = null;
     this.playerID = -1;
     this.playersCollectedTargetChips = new ArrayList<TargetChip>();
-    this.location = new Location(-1, -1);
+    //this.location = new Location(-1, -1);
     this.bidNumber = -1;
 }
 //METHODS
@@ -98,12 +98,7 @@ public Player(){
 
     }
 */
-    /**
-     * Not finished.
-     */
-    public Location getPlayersCurrentLocation(){ //TODO RETURN AN ARRAY HERE OF X AND Y COORDINATES
-        return this.location;
-    }
+
 
     /**
      * This method gives the player their particular robot.

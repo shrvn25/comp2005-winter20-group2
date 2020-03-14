@@ -7,6 +7,7 @@ public class GameSettings {
     private String player2PlayerType;
     private String player3PlayerType;
     private String player4PlayerType;
+    private Player playerOne, playerTwo, playerThree, playerFour;
 
     public GameSettings(){
         //These are the default settings.
@@ -18,6 +19,31 @@ public class GameSettings {
         this.player4PlayerType = "HUMAN";
     }
 
+    /*public Player createAndReturnPlayer1(){
+        playerOne = new Player();
+
+        if (player1PlayerType.equals("HUMAN")){
+            playerOne.setPlayerTypeToHuman();
+        }
+        else {
+            playerOne.setPlayerTypeToComputer();
+        }
+
+
+    }
+
+    public Player createAndReturnPlayer2(){
+
+    }
+
+    public Player createAndReturnPlayer3(){
+
+    }
+
+    public Player createAndReturnPlayer4(){
+
+    }
+*/
     public void setSimpleBoardType(){
         this.boardType = "SIMPLE";
     }
