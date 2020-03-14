@@ -1,55 +1,53 @@
 //package com.group2.gui;
 
 public class GameSettings {
-    private int boardType;
-    private int difficulty;
-    private int player1PlayerType;
-    private int player2PlayerType;
-    private int player3PlayerType;
-    private int player4PlayerType;
+    private String boardType;
+    private String difficulty;
+    private String player1PlayerType;
+    private String player2PlayerType;
+    private String player3PlayerType;
+    private String player4PlayerType;
 
     public GameSettings(){
         //These are the default settings.
-        this.boardType = 0; //0 is simple board, 1 is complex board
-        this.difficulty = 0; // 0 is easy mode, 1 is hard mode
-        this.player1PlayerType = 0; //0 is Human, 1 is Computer
-        this.player2PlayerType = 0; //0 is Human, 1 is Computer
-        this.player3PlayerType = 0; //0 is Human, 1 is Computer
-        this.player4PlayerType = 0; //0 is Human, 1 is Computer
+        this.boardType = "SIMPLE";
+        this.difficulty = "EASY";
+        this.player1PlayerType = "HUMAN";
+        this.player2PlayerType = "HUMAN";
+        this.player3PlayerType = "HUMAN";
+        this.player4PlayerType = "HUMAN";
+    }
+
+    public void setSimpleBoardType(){
+        this.boardType = "SIMPLE";
+    }
+
+    public void setComplexBoardType(){
+        this.boardType = "COMPLEX";
     }
 
 
-
-    public void setBoardType(int newBoardType){
-        this.boardType = newBoardType;
+    public void setEasyDifficulty(){
+        this.difficulty = "EASY";
     }
 
-    public boolean boardTypeIsSimple(){
-        if (this.boardType == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public void setHardDifficulty(){
+        this.difficulty = "HARD";
     }
 
-    public void setDifficulty(int newDifficulty){
-        this.difficulty = newDifficulty;
-    }
-
-    public void setPlayer1PlayerType(int newPlayerType){
-        this.player1PlayerType = newPlayerType;
-    }
-
-    public void setPlayer2PlayerType(int newPlayerType){
+    public void setPlayer2PlayerType(String newPlayerType){
         this.player2PlayerType = newPlayerType;
     }
-    public void setPlayer3PlayerType(int newPlayerType){
+
+    public void setPlayer3PlayerType(String newPlayerType){
         this.player3PlayerType = newPlayerType;
     }
-    public void setPlayer4PlayerType(int newPlayerType){
+
+    public void setPlayer4PlayerType(String newPlayerType){
         this.player4PlayerType = newPlayerType;
     }
+
+    /*
 
     //Getters //TODO Change integers to strings reading what board types and difficulties are.
 
@@ -105,6 +103,6 @@ public class GameSettings {
         else{
             return false;
         }
-    }
+    } */
 
 }

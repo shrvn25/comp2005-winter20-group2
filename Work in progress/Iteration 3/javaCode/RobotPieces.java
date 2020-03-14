@@ -28,11 +28,11 @@ public class RobotPieces {
      * Return the color of Robot.
      * @return
      */
-/*
+
     public String getColor(){
         return this.color;
     }
-*/
+
     /**
      * Set the color of the robot.
      * @param newColor
@@ -42,14 +42,6 @@ public class RobotPieces {
         this.color = color;
     }
 
-    /**
-     * Get the color of the robot.
-     * @return
-     */
-
-     public String getColor(){
-         return this.color;
-     }
 
     /**
      * Get the shape of the robot.
