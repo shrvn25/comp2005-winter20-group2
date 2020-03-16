@@ -285,6 +285,14 @@ public class GridSquare extends JButton
         }
     }
 
+    public void setSquaresRowCoordinate(int newRowCoordinate){
+        this.rowCoord = newRowCoordinate;
+    }
+
+    public void setSquaresColumnCoordinate(int newColumnCoordinate){
+        this.columnCoord = newColumnCoordinate;
+    }
+
     /**
      * This method returns the row coordinate of a square.
      * @return
