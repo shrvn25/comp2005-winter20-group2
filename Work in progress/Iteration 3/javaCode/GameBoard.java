@@ -705,26 +705,70 @@ public class GameBoard extends JFrame implements ActionListener {
         }
 
         playerWithLowestBid = determinePlayerWithLowestBid();
+        int playerCount = 0;
+
+        boolean winnerOfRoundFound = false;
+
+        while ( (winnerOfRoundFound == false) && (playerCount != 4) ){
 
 
         //TODO Now get that person to click through their squares
-        letChosenPlayerClickTheirPath();
+        //letChosenPlayerClickTheirPath();
+
+        //First, enable all the gridsquares to be clickable for the user.
+        enableAllGridSquaresClickable();
+
+        ClickRecorder clickRecorder = new ClickRecorder();
+
+        addActionListenersToAllGridSquares();
+
+        boolean readyToVerify = false;
+
+        while (readyToVerify == false) {
+            //Just waiting.
+        }
 
 
+        removeAddedActionListenersToAllGridSquares();
+
+        GridSquare[] arrayOfSquaresPlayerClickedInOrder = clickRecorder.getArrayOfClickedSquares();
 
 
         //DUMMY CODE Will need to be removed.
-        GridSquare[] squaresPlayerClicked = {new GridSquare(-1, -1), new GridSquare(-1, -1), new GridSquare(-1, -1)};
+        //GridSquare[] squaresPlayerClicked = {new GridSquare(-1, -1), new GridSquare(-1, -1), new GridSquare(-1, -1)};
 
         //DummyCode
-        GridSquare squareWithCurrentTargetTile = new GridSquare(-1, -1);
+        GridSquare squareWithCurrentTargetTile = gridSquares[13][5]; //It will be this one for now the red hex star one.
 
 
-        // VerifyBidProcessor verifyBidProcessor = new VerifyBidProcessor(playerWithLowestBid.getBidNumber(), squaresPlayerClicked, playerWithLowestBid.getPlayersRobot(), squareWithCurrentTargetTile);
+        VerifyBidProcessor verifyBidProcessor = new VerifyBidProcessor(playerWithLowestBid.getBidNumber(), arrayOfSquaresPlayerClickedInOrder, playerWithLowestBid.getPlayersRobot(), squareWithCurrentTargetTile, gridSquares);
 
-        // if (verifyBidProcessor.wereMovesLegalAndAccurate() == true){
-        //
-        //  }
+        if (verifyBidProcessor.wereMovesLegalAndAccurate() == true) {
+            winnerOfRoundFound = true;
+            String message = playerWithLowestBid.getPlayerName() + "won this round!";
+            JOptionPane messageThatPlayerWon = new JOptionPane();
+            messageThatPlayerWon.showMessageDialog(new JFrame(), message);
+            //playerWithLowestBid.addTargetChipToPlayersCollection(squareWithCurrentTargetTile.getTargetTileOnSquare());
+            squareWithCurrentTargetTile.removeTargetTileFromGridSquare();
+            //Show on grid to remove
+        } else {
+            winnerOfRoundFound = false;
+            String message = playerWithLowestBid.getPlayerName() + ", sorry, that's not correct. Next player.";
+            JOptionPane messageThatPlayerWon = new JOptionPane();
+            messageThatPlayerWon.showMessageDialog(new JFrame(), message);
+
+            playerWithLowestBid.setBidNumber(1000000); //Leave loser player out of next finding out next bid.
+            playerCount += 1;
+
+            playerWithLowestBid = determinePlayerWithLowestBid();
+        }
+    }
+
+        if (playerCount == 4){
+            String message = "Nobody made accurate bids. Begin bidding round again.";
+            JOptionPane messageThatPlayerWon = new JOptionPane();
+            messageThatPlayerWon.showMessageDialog(new JFrame(), message);
+        }
 
 
         //How to disable players bids?
@@ -771,14 +815,41 @@ public class GameBoard extends JFrame implements ActionListener {
     }
 
 
-
-    private void letChosenPlayerClickTheirPath(){
-        //First, enable all the gridsquares to be clickable for the user.
-        enableAllGridSquaresClickable();
-
-        ClickRecorder clickRecorder = new ClickRecorder();
-
+    private void letChosenPlayerClickTheirPath() {
 
 
     }
+
+
+    private void addActionListenersToAllGridSquares() {
+        for (int row = 0; row < this.gridSquares.length; row++) {
+            for (int column = 0; column < this.gridSquares[row].length; column++) {
+                int finalRow = row;
+                int finalColumn = column;
+                this.gridSquares[finalRow][finalColumn].addActionListener((ActionEvent e) -> {
+                    clickRecorder.recordClickedGridSquare(this.gridSquares[finalRow][finalColumn]);
+                });
+            }
+        }
+    }
+
+
+    private void removeAddedActionListenersToAllGridSquares(){
+        for (int row = 0; row < this.gridSquares.length; row++) {
+            for (int column = 0; column < this.gridSquares[row].length; column++) {
+                int finalRow = row;
+                int finalColumn = column;
+
+                this.gridSquares[finalRow][finalColumn].removeActionListener((ActionEvent e) -> {
+                    clickRecorder.recordClickedGridSquare(this.gridSquares[finalRow][finalColumn]);
+                });
+            }
+        }
+
+    }
+
+
+
+
+
 }

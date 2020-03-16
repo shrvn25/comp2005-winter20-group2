@@ -203,6 +203,10 @@ public class GridSquare extends JButton
         }
     }
 
+    public void removeTargetTileFromGridSquare(){
+        this.squaresTargetTile = null;
+    }
+
     /**
      * This method add a square edge barrier to the north edge of the square.
      */
