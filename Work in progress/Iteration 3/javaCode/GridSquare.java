@@ -44,6 +44,8 @@ public class GridSquare extends JButton
         this.southEdgeBarrier = null;
         this.eastEdgeBarrier = null;
         this.westEdgeBarrier = null;
+
+        this.setEnabled(false);//By default when first made, the buttons will not be clickable. This will change when players need to prove their move.
     }
     
     // if the decider is even, it chooses black, otherwise white (for 'column+row' will allow a chequerboard effect)
