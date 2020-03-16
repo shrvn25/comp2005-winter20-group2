@@ -29,6 +29,7 @@ public class GameBoard extends JFrame implements ActionListener {
     private ImageIcon redRobotIcon, greenRobotIcon, yellowRobotIcon, blueRobotIcon;
     private RobotPieces redRobot, greenRobot, yellowRobot, blueRobot;
     private Player player1, player2, player3, player4, playerWithLowestBid;
+    private ClickRecorder clickRecorder;
 //private VerifyBidProcessor verifyBidProcessor;
 
 
@@ -703,13 +704,13 @@ public class GameBoard extends JFrame implements ActionListener {
             }
         }
 
-        playerWithLowestBid = new Player();
         playerWithLowestBid = determinePlayerWithLowestBid();
 
 
         //TODO Now get that person to click through their squares
+        letChosenPlayerClickTheirPath();
 
-        //First, enable all the gridsquares to be clickable for the user.
+
 
 
         //DUMMY CODE Will need to be removed.
@@ -767,5 +768,17 @@ public class GameBoard extends JFrame implements ActionListener {
                 this.gridSquares[row][column].setEnabled(false);
             }
         }
+    }
+
+
+
+    private void letChosenPlayerClickTheirPath(){
+        //First, enable all the gridsquares to be clickable for the user.
+        enableAllGridSquaresClickable();
+
+        ClickRecorder clickRecorder = new ClickRecorder();
+
+
+
     }
 }

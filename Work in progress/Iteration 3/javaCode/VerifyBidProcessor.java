@@ -209,21 +209,7 @@ public class VerifyBidProcessor {
         }
     }
 
-    /**
-     * This method takes an arrayList with Square elements and returns as array of Square elements from the
-     * ArrayList in the same order as in the ArrayList.
-     *
-     * @param squareArrayList
-     * @return
-     */
 
-    private GridSquare[] convertSquareArrayListToSquareArray(ArrayList<GridSquare> squareArrayList) {
-        GridSquare[] squareArray = new GridSquare[squareArrayList.size()];
-        for (int i = 0; i < squareArrayList.size(); i++) {
-            squareArray[i] = squareArrayList.get(i);
-        }
-        return squareArray;
-    }
 
     /**
      * This method returns true if there is a barrier on the target square that can stop the robot from moving
