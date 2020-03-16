@@ -4,7 +4,6 @@
 //import com.group2.javaCode.Robot;
 //import com.group2.physicalgameobjects.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -15,13 +14,13 @@ public class VerifyBidProcessor {
     int bidNumber;
     GridSquare[] listOfSquaresMovedInOrder;
     RobotPieces robotToMove;
-    GridSquare squareWithTargetTile;
+    GridSquare squareWithDesiredTargetTile;
 
-    public VerifyBidProcessor(int newBidNumber, GridSquare[] newListOfSquaresMovedInOrder, RobotPieces newRobotToMove, GridSquare newSquareWithTargetTile){
+    public VerifyBidProcessor(int newBidNumber, GridSquare[] newListOfSquaresMovedInOrder, RobotPieces newRobotToMove, GridSquare newSquareWithDesiredTargetTile){
         this.bidNumber = newBidNumber;
         this.listOfSquaresMovedInOrder = newListOfSquaresMovedInOrder;
         this.robotToMove = newRobotToMove;
-        this.squareWithTargetTile = newSquareWithTargetTile;
+        this.squareWithDesiredTargetTile = newSquareWithDesiredTargetTile;
 
 
     }
@@ -32,7 +31,7 @@ public class VerifyBidProcessor {
      * at the target square (accurate).
      */
 
-    public boolean wereMovesLegalAndAccurate(int bidNumber, GridSquare[] listOfSquaresMovedInOrder, RobotPieces robotToMove, GridSquare squareWithTargetTile) {
+    public boolean wereMovesLegalAndAccurate() {
 
         if (doesPlayerClickTheirOwnRobotFirst() == false) {
             return false;
@@ -40,17 +39,128 @@ public class VerifyBidProcessor {
             return false;
         } else {
             //Going through the list for every pair of adjacent gridsquares:
-            if (doesPlayerMoveThroughABlackBarrier() == false) {
-                return false;
-            } else if (doesPlayerGoStraightThroughDiaBarrierOfDIfferentColor() == true) {
-                return false;
+            GridSquare currentSquare = this.listOfSquaresMovedInOrder[i];
+            int currentSquareIndex = 0;
+            GridSquare nextSquare = this.listOfSquaresMovedInOrder[i + 1];
+            int nextSquareIndex = 0 + 1;
+            String currentMovingDirection = ;
+            for (int i = 0; i < this.listOfSquaresMovedInOrder.length; i++){
+
+                currentSquare = this.listOfSquaresMovedInOrder[i];
+                currentSquareIndex = i;
+                nextSquare = this.listOfSquaresMovedInOrder[i + 1];
+                nextSquareIndex = i + 1;
+                currentMovingDirection = returnCurrentDirection(currentSquare, nextSquare) ;
+
+                if (doesPlayerMoveThroughABlackBarrier(currentSquare, nextSquare) == false) {
+                    return false;
+                }
+
+                else if (isThereARobotOnNextSquare(nextSquare) == true){
+                    return false;
+                }
+
+                else if (doesTheNextSquareHaveTheTargetTileToReach(nextSquare) == true){
+                    if (isTheNextSquareTheLastSquareClicked(nextSquare) == true){
+                        if (doesNextSquareHaveBarrierToStopIntendedDirection(currentMovingDirection, nextSquare) == false){
+                            if (isThereARobotToBlockIntendedDirectionAfterNextSquare(nextSquare, nextSquareIndex) == false) {//Fix this.
+                                return false;
+                            }
+                            else {
+                                int numberOfMoves = countNumberOfMovesOnSimpleBoard();
+                                if (numberOfMoves <= 1){
+                                    return false;
+                                }
+                                else{
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                else if (doesNextSquareHaveBarrierToStopIntendedDirection(currentMovingDirection, nextSquare) == true){
+                    if (doesPlayerIntendToMovePerpendicularAfterReachingNextSquare() == false){
+                        return false;
+                    }
+                }
+                else if (isThereARobotToBlockIntendedDirectionAfterNextSquare(nextSquare, nextSquareIndex) == true){
+                    if (doesPlayerIntendToMovePerpendicularAfterReachingNextSquare() == false){
+                        return false;
+                    }
+                }
             }
 
         }
     }
 
     private boolean doesPlayerClickTheirOwnRobotFirst(){
+        if (this.robotToMove.getRobotRowCoord() == this.listOfSquaresMovedInOrder[0].getSquaresRowCoordinate()){
+            if (this.robotToMove.getRobotColumnCoord() == this.listOfSquaresMovedInOrder[0].getSquaresColumnCoordinate()){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    private boolean doesPlayerClickTheSquareWithTargetTileLast(){
+        if (this.robotToMove.getRobotRowCoord() == this.listOfSquaresMovedInOrder[this.listOfSquaresMovedInOrder.length - 1].getSquaresRowCoordinate()){
+            if (this.robotToMove.getRobotColumnCoord() == this.listOfSquaresMovedInOrder[this.listOfSquaresMovedInOrder.length - 1].getSquaresColumnCoordinate()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean doesPlayerMoveThroughABlackBarrier(GridSquare currentSquareInArray, GridSquare nextSquareInArray){
+        if (isThereABarrierBlockingIntendedDirection(currentSquareInArray, nextSquareInArray) == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean isThereARobotOnNextSquare(GridSquare nextSquare){
+        if (nextSquare.isRobotOnSquare() == true) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean doesTheNextSquareHaveTheTargetTileToReach(GridSquare nextSquare){
+        if (nextSquare.doesSquareHaveATargetTile() == false){
+            return false;
+        }
+        else if (nextSquare.equals(squareWithDesiredTargetTile) == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private boolean isTheNextSquareTheLastSquareClicked(GridSquare nextSquare){
+        if (nextSquare.getSquaresRowCoordinate() == this.listOfSquaresMovedInOrder[this.listOfSquaresMovedInOrder.length - 1].getSquaresRowCoordinate()){
+            if (nextSquare.getSquaresColumnCoordinate() == this.listOfSquaresMovedInOrder[this.listOfSquaresMovedInOrder.length - 1].getSquaresColumnCoordinate()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isThereARobotToBlockIntendedDirectionAfterNextSquare(GridSquare nextSquare, int nextSquareIndex){
+        GridSquare futureCurrentSquare = nextSquare;
+        GridSquare futureNextSquare = listOfSquaresMovedInOrder[nextSquareIndex + 1];
+
+        if (futureNextSquare.getRobotOnSquare() == null){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
         //One move is going in a straight line until it hits a barrier. There has to be more than one move to make it a legal series of moves.
@@ -61,7 +171,7 @@ public class VerifyBidProcessor {
 
         Location robotLocation = robotToMove.getRobotLocation();
         Location startSquareLocation = listOfSquaresMovedInOrder[0].getSquaresRowColumnLocation();
-        Location squareWithTargetTileLocation = squareWithTargetTile.getSquaresRowColumnLocation();
+        Location squareWithTargetTileLocation = squareWithDesiredTargetTile.getSquaresRowColumnLocation();
         Location lastSquareLocation = listOfSquaresMovedInOrder[listOfSquaresMovedInOrder.length-1].getSquaresRowColumnLocation();
 
         if ( (robotLocation.equals(startSquareLocation) == false) ||  ( lastSquareLocation.equals(squareWithTargetTileLocation) == false) {
@@ -113,11 +223,11 @@ public class VerifyBidProcessor {
                 //same direction so that the robot stops, or there is a robot in the same direction
                 //that stops this robot on the target square. We need to check both.
 
-                String intendedDirection = returnIntendedDirection(currentSquareInArray, nextSquareInArray);
+                String intendedDirection = returnCurrentDirection(currentSquareInArray, nextSquareInArray);
 
                 //First check if there is a barrier in the same direction on the target square that can stop
                 //the robot.
-                if (doesFinalSquareWithTargetTileHaveBarrierToStopIntendedDirection(intendedDirection, nextSquareInArray) == true){
+                if (doesNextSquareHaveBarrierToStopIntendedDirection(intendedDirection, nextSquareInArray) == true){
                     //weHaveReachedTargetTile = true;
                     return true;
                 }
@@ -175,7 +285,7 @@ public class VerifyBidProcessor {
      * @param listOfSquaresMovedInOrder This array must be of length 2 or greater.
      * @return
      */
-/*
+
     private int countNumberOfMovesOnSimpleBoard(GridSquare [] listOfSquaresMovedInOrder){
         int numberOfMoves = 0;
 
@@ -183,18 +293,18 @@ public class VerifyBidProcessor {
         int currentSquaresIndex = 0;
         GridSquare nextSquare = listOfSquaresMovedInOrder[1];
 
-        String currentDirection = returnIntendedDirection(currentSquare, nextSquare);
+        String currentDirection = returnCurrentDirection(currentSquare, nextSquare);
 
         for (int i = 1; i < listOfSquaresMovedInOrder.length; i++){
 
-            if (doesSquareHaveBarrierBlockingDirection(nextSquare, currentDirection) == true){
+            if (isThereABlackBarrierOnFarEdgeOfNextSquare(nextSquare, currentDirection) == true){
                  numberOfMoves += 1;
             }
 
             currentSquaresIndex += 1;
             currentSquare = nextSquare;
             nextSquare = listOfSquaresMovedInOrder[currentSquaresIndex + 1];
-            currentDirection = returnIntendedDirection(currentSquare, nextSquare);
+            currentDirection = returnCurrentDirection(currentSquare, nextSquare);
         }
         return numberOfMoves;
     }
@@ -204,20 +314,20 @@ public class VerifyBidProcessor {
      * This worker method returns tru if given square has a barrier blocking the intended direction, and false if not.
      * (This is some code duplication with "doesFinalSquareWithTarget" method which will need to be fixed later.)
      * @param squareToCheck
-     * @param intendedDirection
+     * @param currentDirection
      * @return
      */
-    private boolean doesSquareHaveBarrierBlockingDirection(GridSquare squareToCheck, String intendedDirection){
-        if (intendedDirection.equals("NORTH") && (squareToCheck.doesSquareHaveNorthEdgeBarrier() == true)){
+    private boolean isThereABlackBarrierOnFarEdgeOfNextSquare(GridSquare squareToCheck, String currentDirection){
+        if (currentDirection.equals("NORTH") && (squareToCheck.doesSquareHaveNorthEdgeBarrier() == true)){
             return true;
         }
-        else if (intendedDirection.equals("SOUTH") && (squareToCheck.doesSquareHaveSouthEdgeBarrier() == true)){
+        else if (currentDirection.equals("SOUTH") && (squareToCheck.doesSquareHaveSouthEdgeBarrier() == true)){
             return true;
         }
-        else if (intendedDirection.equals("EAST") && (squareToCheck.doesSquareHaveEastEdgeBarrier() == true)){
+        else if (currentDirection.equals("EAST") && (squareToCheck.doesSquareHaveEastEdgeBarrier() == true)){
             return true;
         }
-        else if (intendedDirection.equals("WEST") && (squareToCheck.doesSquareHaveWestEdgeBarrier() == true)){
+        else if (currentDirection.equals("WEST") && (squareToCheck.doesSquareHaveWestEdgeBarrier() == true)){
             return true;
         }
         else{
@@ -248,7 +358,7 @@ public class VerifyBidProcessor {
      * @return true if there is a barrier on the target square that can stop the robot from moving in it's intended
      * direction, false if not.
      */
-    private boolean doesFinalSquareWithTargetTileHaveBarrierToStopIntendedDirection(String intendedDirection, GridSquare squareWithTargetTile){
+    private boolean doesNextSquareHaveBarrierToStopIntendedDirection(String intendedDirection, GridSquare squareWithTargetTile){
         if (intendedDirection.equals("NORTH") && (squareWithTargetTile.doesSquareHaveNorthEdgeBarrier() == true)){
             return true;
         }
@@ -295,16 +405,16 @@ public class VerifyBidProcessor {
     /**
      * This method tests if the FinalSquareWithTargetTileHaveAnotherRobotByItToStopIntendedDirection
      * @param intendedDirection
-     * @param squareWithTargetTile
+     * @param nextSquare
      * @param theCurrentGameBoard
      * @return
      */
-    /*
-    private boolean doesFinalSquareWithTargetTileHaveAnotherRobotByItToStopIntendedDirection(String intendedDirection, GridSquare squareWithTargetTile, GameBoard theCurrentGameBoard){
+
+    private boolean isThereARobotToBlockIntendedDirectionAfterNextSquare(String intendedDirection, GridSquare nextSquare. Gameboard){
         //First we need to get the square from the gameboard that is adjacent to the target tile square and in the
         //same direction as the intended direction of the moving robot.
 
-        Location targetTileSquaresLocation = squareWithTargetTile.getSquaresRowColumnLocation();
+        Location targetTileSquaresLocation = nextSquare.getSquaresRowColumnLocation();
         Location squareWithPotentialBlockingRobotLocation = new Location(-1, -1);//Default location does not exist. We will change here.
 
         if (intendedDirection.equals("NORTH")){
@@ -348,15 +458,15 @@ public class VerifyBidProcessor {
      * @return
      */
 
-    /*
 
 
-    private String returnIntendedDirection(GridSquare startingSquare, GridSquare endingSquare){
-        int rowCoordinateStartSquare = startingSquare.getSquaresRowColumnLocation().getRowCoordinate();
-        int columnCoordinateStartSquare = startingSquare.getSquaresRowColumnLocation().getColumnCoordinate();
 
-        int rowCoordinateEndingSquare = endingSquare.getSquaresRowColumnLocation().getRowCoordinate();
-        int columnCoordinateEndingSquare = endingSquare.getSquaresRowColumnLocation().getColumnCoordinate();
+    private String returnCurrentDirection(GridSquare startingSquare, GridSquare endingSquare){
+        int rowCoordinateStartSquare = startingSquare.getSquaresRowCoordinate();
+        int columnCoordinateStartSquare = startingSquare.getSquaresColumnCoordinate();
+
+        int rowCoordinateEndingSquare = endingSquare.getSquaresRowCoordinate();
+        int columnCoordinateEndingSquare = endingSquare.getSquaresColumnCoordinate();
 
         int EndRowCoordMinusStartRowCoord = rowCoordinateEndingSquare - rowCoordinateStartSquare;
         int EndColCoordMinusStartColCoord = columnCoordinateEndingSquare - columnCoordinateStartSquare;
@@ -381,9 +491,9 @@ public class VerifyBidProcessor {
      * @param endingSquare
      * @return
      */
-    /*
+
     private boolean isThereABarrierBlockingIntendedDirection(GridSquare startingSquare, GridSquare endingSquare) {
-        String direction = returnIntendedDirection(startingSquare, endingSquare);
+        String direction = returnCurrentDirection(startingSquare, endingSquare);
 
         if (direction.equals("NORTH") && (startingSquare.doesSquareHaveNorthEdgeBarrier() == true)) {
             return false;
@@ -396,7 +506,6 @@ public class VerifyBidProcessor {
         } else {
             return true;
         }
-
     }
 
     /**

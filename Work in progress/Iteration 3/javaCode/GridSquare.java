@@ -183,6 +183,10 @@ public class GridSquare extends JButton
         this.squaresTargetTile = newTargetTile;
     }
 
+    public TargetTile getTargetTileOnSquare(){
+        return this.squaresTargetTile;
+    }
+
     /**
      * This method returns true if the square has a target tile, and false if not.
      * @return

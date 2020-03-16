@@ -66,6 +66,10 @@ public class RobotPieces {
         return this.rowCoord;
     }
 
+    public int getRobotColumnCoord(){
+        return this.columnCoord;
+    }
+
     public void setRobotRowCoordinate(int newRowCoordinate){
         this.rowCoord = newRowCoordinate;
     }
