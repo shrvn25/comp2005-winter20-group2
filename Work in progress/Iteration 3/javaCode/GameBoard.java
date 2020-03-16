@@ -636,31 +636,37 @@ private void setupVisualAndLogicalBorders(){
 }
 
 private void addRobotIconsAndRobotsToStartingPositions(){
-    //redRobotIcon = ;
-    //greenRobotIcon
-    //yellowRobotIcon
-    //blueRobotIcon
+    redRobotIcon = new ImageIcon("redRobot.jpg");
+    greenRobotIcon = new ImageIcon("greenRobot.jpg");
+    yellowRobotIcon = new ImageIcon("yellowRobot.jpg");
+    blueRobotIcon = new ImageIcon("blueRobot.jpg");
     //TODO need to finish adding icons here
+
+
 
     redRobot = new RobotPieces("RED", "STAR");
     redRobot.setRobotRowCoordinate(11);
     redRobot.setRobotColumnCoordinate(3);
     gridSquares[11][3].addRobotToSquare(redRobot);
+    gridSquares[11][3].setIcon(new ImageIcon(redRobotIcon.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
 
     greenRobot = new RobotPieces("GREEN", "");
     greenRobot.setRobotRowCoordinate(5);
     greenRobot.setRobotColumnCoordinate(13);
     gridSquares[5][13].addRobotToSquare(greenRobot);
+    gridSquares[5][13].setIcon(new ImageIcon(greenRobotIcon.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
 
     yellowRobot = new RobotPieces("YELLOW", "");
     yellowRobot.setRobotRowCoordinate(3);
     yellowRobot.setRobotColumnCoordinate(10);
     gridSquares[3][10].addRobotToSquare(yellowRobot);
+    gridSquares[3][10].setIcon(new ImageIcon(yellowRobotIcon.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
 
     blueRobot = new RobotPieces("BLUE", "");
     blueRobot.setRobotRowCoordinate(0);
     blueRobot.setRobotColumnCoordinate(0);
     gridSquares[0][0].addRobotToSquare(blueRobot);
+    gridSquares[0][0].setIcon(new ImageIcon(blueRobotIcon.getImage().getScaledInstance(25,25, java.awt.Image.SCALE_SMOOTH)));
 
 }
 
