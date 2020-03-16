@@ -14,7 +14,7 @@ public class GameBoard extends JFrame implements ActionListener {
 // gui components that are contained in this frame:
     private JPanel sidePanel, bottomPanel, topPanel, playerPanel;    // top and bottom panels in the main window
     private JLabel sideLabel, topLabel, topLabel2, topLabel3, topLabel4, player1Label, player2Label, player3Label, player4Label;                // a text label to appear in the top panel
-    private JButton topButton, startBiddingButton;                // a 'reset' button to appear in the top panel
+    private JButton topButton, startBiddingButton, verifyButton;                // a 'reset' button to appear in the top panel
     private GridSquare[][] gridSquares;    // squares to appear in grid formation in the bottom panel
     private int x, y;                        // the size of the grid
     private JComboBox<Integer> movesList1, movesList2, movesList3, movesList4;
@@ -30,6 +30,9 @@ public class GameBoard extends JFrame implements ActionListener {
     private RobotPieces redRobot, greenRobot, yellowRobot, blueRobot;
     private Player player1, player2, player3, player4, playerWithLowestBid;
     private ClickRecorder clickRecorder;
+    private boolean  readyToVerify;
+    private boolean winnerOfRoundFound;
+    private int playerCount;
 //private VerifyBidProcessor verifyBidProcessor;
 
 
@@ -43,6 +46,12 @@ public class GameBoard extends JFrame implements ActionListener {
         this.x = x;
         this.y = y;
         this.setSize(1200, 800);
+
+        this.readyToVerify = false;
+        this.clickRecorder = new ClickRecorder();
+
+        this.winnerOfRoundFound = false;
+        this.playerCount = 0;
 
         createIconObjects();
         createPanels();
@@ -161,6 +170,9 @@ public class GameBoard extends JFrame implements ActionListener {
 
         startBiddingButton = new JButton("Start Bidding Round!");
         startBiddingButton.addActionListener(this);
+        verifyButton = new JButton("Verify Bid!"); //Action Listener is added later.
+        verifyButton.addActionListener((ActionEvent e ) -> {this.readyToVerify = true;});
+
 
         topPanel.add(startBiddingButton);
         topPanel.add(topLabel2);
@@ -199,6 +211,7 @@ public class GameBoard extends JFrame implements ActionListener {
         player4Label = new JLabel("Player 4: ");
 
         playerPanel.add(startBiddingButton);
+        playerPanel.add(verifyButton);
         playerPanel.add(topLabel2);
         playerPanel.add(topLabel3);
         playerPanel.add(topLabel4);
@@ -689,6 +702,14 @@ public class GameBoard extends JFrame implements ActionListener {
 
         biddingTimer.startTime();
 
+        //DUMMYCODE TO REMOVE
+        this.player1.setBidNumber(5);
+        this.player2.setBidNumber(100);
+        this.player3.setBidNumber(100);
+        this.player4.setBidNumber(100);
+        //DUMMYCODE TO REMOVE ABOVE
+
+/*
         while (biddingTimer.hasBiddingTimeStopped == false) {
             if (currentPlayer1Bid != player1.getBidNumber()) {
                 currentPlayer1Bid = player1.getBidNumber();
@@ -702,69 +723,84 @@ public class GameBoard extends JFrame implements ActionListener {
             if (currentPlayer4Bid != player4.getBidNumber()) {
                 currentPlayer4Bid = player4.getBidNumber();
             }
-        }
 
+
+        }
+        */
         playerWithLowestBid = determinePlayerWithLowestBid();
-        int playerCount = 0;
+        //int playerCount = 0;
 
-        boolean winnerOfRoundFound = false;
+        //boolean winnerOfRoundFound = false;
 
-        while ( (winnerOfRoundFound == false) && (playerCount != 4) ){
-
-
-        //TODO Now get that person to click through their squares
-        //letChosenPlayerClickTheirPath();
-
-        //First, enable all the gridsquares to be clickable for the user.
-        enableAllGridSquaresClickable();
-
-        ClickRecorder clickRecorder = new ClickRecorder();
-
-        addActionListenersToAllGridSquares();
-
-        boolean readyToVerify = false;
-
-        while (readyToVerify == false) {
-            //Just waiting.
-        }
+        //while ((winnerOfRoundFound == false) && (playerCount != 4)) {
 
 
-        removeAddedActionListenersToAllGridSquares();
+            //TODO Now get that person to click through their squares
+            //letChosenPlayerClickTheirPath();
 
-        GridSquare[] arrayOfSquaresPlayerClickedInOrder = clickRecorder.getArrayOfClickedSquares();
+            //First, enable all the gridsquares to be clickable for the user.
+            enableAllGridSquaresClickable();
+
+            this.clickRecorder = new ClickRecorder();
+
+            addActionListenersToAllGridSquares();
+
+            verifyButton.addActionListener((ActionEvent e) -> {
+                finishBiddingProcess();
+            });
 
 
-        //DUMMY CODE Will need to be removed.
-        //GridSquare[] squaresPlayerClicked = {new GridSquare(-1, -1), new GridSquare(-1, -1), new GridSquare(-1, -1)};
 
-        //DummyCode
-        GridSquare squareWithCurrentTargetTile = gridSquares[13][5]; //It will be this one for now the red hex star one.
-
-
-        VerifyBidProcessor verifyBidProcessor = new VerifyBidProcessor(playerWithLowestBid.getBidNumber(), arrayOfSquaresPlayerClickedInOrder, playerWithLowestBid.getPlayersRobot(), squareWithCurrentTargetTile, gridSquares);
-
-        if (verifyBidProcessor.wereMovesLegalAndAccurate() == true) {
-            winnerOfRoundFound = true;
-            String message = playerWithLowestBid.getPlayerName() + "won this round!";
-            JOptionPane messageThatPlayerWon = new JOptionPane();
-            messageThatPlayerWon.showMessageDialog(new JFrame(), message);
-            //playerWithLowestBid.addTargetChipToPlayersCollection(squareWithCurrentTargetTile.getTargetTileOnSquare());
-            squareWithCurrentTargetTile.removeTargetTileFromGridSquare();
-            //Show on grid to remove
-        } else {
-            winnerOfRoundFound = false;
-            String message = playerWithLowestBid.getPlayerName() + ", sorry, that's not correct. Next player.";
-            JOptionPane messageThatPlayerWon = new JOptionPane();
-            messageThatPlayerWon.showMessageDialog(new JFrame(), message);
-
-            playerWithLowestBid.setBidNumber(1000000); //Leave loser player out of next finding out next bid.
-            playerCount += 1;
-
-            playerWithLowestBid = determinePlayerWithLowestBid();
-        }
     }
 
-        if (playerCount == 4){
+
+    private void finishBiddingProcess(){
+            /*while (this.readyToVerify == false) {
+            /*try {
+                Thread.sleep(10000000);
+            } catch (InterruptedException e){
+            }*/
+            /*}*/
+
+            //this.readyToVerify = false; //Reset
+            //verifyButton.removeActionListener((ActionEvent e ) -> {finishBiddingProcess();}; //Reset
+
+            removeAddedActionListenersToAllGridSquares();
+
+            GridSquare[] arrayOfSquaresPlayerClickedInOrder = clickRecorder.getArrayOfClickedSquares();
+
+
+            //DUMMY CODE Will need to be removed.
+            //GridSquare[] squaresPlayerClicked = {new GridSquare(-1, -1), new GridSquare(-1, -1), new GridSquare(-1, -1)};
+
+            //DummyCode
+            GridSquare squareWithCurrentTargetTile = gridSquares[13][5]; //It will be this one for now the red hex star one.
+
+
+            VerifyBidProcessor verifyBidProcessor = new VerifyBidProcessor(playerWithLowestBid.getBidNumber(), arrayOfSquaresPlayerClickedInOrder, playerWithLowestBid.getPlayersRobot(), squareWithCurrentTargetTile, gridSquares);
+
+            if (verifyBidProcessor.wereMovesLegalAndAccurate() == true) {
+                this.winnerOfRoundFound = true;
+                String message = playerWithLowestBid.getPlayerName() + "won this round!";
+                JOptionPane messageThatPlayerWon = new JOptionPane();
+                messageThatPlayerWon.showMessageDialog(new JFrame(), message);
+                //playerWithLowestBid.addTargetChipToPlayersCollection(squareWithCurrentTargetTile.getTargetTileOnSquare());
+                squareWithCurrentTargetTile.removeTargetTileFromGridSquare();
+                //Show on grid to remove
+            } else {
+                this.winnerOfRoundFound = false;
+                String message = playerWithLowestBid.getPlayerName() + ", sorry, that's not correct. Next player.";
+                JOptionPane messageThatPlayerWon = new JOptionPane();
+                messageThatPlayerWon.showMessageDialog(new JFrame(), message);
+
+                playerWithLowestBid.setBidNumber(1000000); //Leave loser player out of next finding out next bid.
+                this.playerCount += 1;
+
+                playerWithLowestBid = determinePlayerWithLowestBid();
+            }
+
+
+        if (this.playerCount == 4){
             String message = "Nobody made accurate bids. Begin bidding round again.";
             JOptionPane messageThatPlayerWon = new JOptionPane();
             messageThatPlayerWon.showMessageDialog(new JFrame(), message);
