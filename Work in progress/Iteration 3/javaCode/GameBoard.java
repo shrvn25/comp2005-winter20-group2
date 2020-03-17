@@ -172,6 +172,8 @@ public class GameBoard extends JFrame implements ActionListener {
         startBiddingButton.addActionListener(this);
         verifyButton = new JButton("Verify Bid!"); //Action Listener is added later.
         verifyButton.addActionListener((ActionEvent e ) -> {this.readyToVerify = true;});
+        //clickYourPathButton = new JButton("Click Your Path");
+        //clickYourPathButton.addActionListener((ActionEvent e) -> {});
 
 
         topPanel.add(startBiddingButton);
@@ -805,6 +807,11 @@ public class GameBoard extends JFrame implements ActionListener {
                 //playerWithLowestBid.addTargetChipToPlayersCollection(squareWithCurrentTargetTile.getTargetTileOnSquare());
                 squareWithCurrentTargetTile.removeTargetTileFromGridSquare();
                 //Show on grid to remove
+                moveWinningBiddersRobot(arrayOfSquaresPlayerClickedInOrder);
+
+
+
+
             } else {
                 this.winnerOfRoundFound = false;
                 String message = playerWithLowestBid.getPlayerName() + ", sorry, that's not correct. Next player.";
@@ -902,7 +909,47 @@ public class GameBoard extends JFrame implements ActionListener {
 
     }
 
+private void moveWinningBiddersRobot(GridSquare [] playersClickedSquares){ //Note about pass by reference.......
+        RobotPieces playersRobot = playerWithLowestBid.getPlayersRobot();
 
+        //Get the gridsquare the robot is on.
+    //Get robot's icon on the gridsquare
+    int squareRowCoord = playersClickedSquares[0].getSquaresRowCoordinate();
+    int squareColumnCoord = playersClickedSquares[0].getSquaresColumnCoordinate();
+
+    Icon robotIcon = gridSquares[squareRowCoord][squareColumnCoord].getIcon();
+
+    for (int i = 1; i < playersClickedSquares.length; i++) {
+
+        //Remove the icon from the gridsquare
+        gridSquares[squareRowCoord][squareColumnCoord].setIcon(null);
+
+        //Wait a few seconds
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+
+        }
+
+        //Get new coordinates
+        squareRowCoord = playersClickedSquares[i].getSquaresRowCoordinate();
+        squareColumnCoord = playersClickedSquares[i].getSquaresColumnCoordinate();
+
+        gridSquares[squareRowCoord][squareColumnCoord].setIcon(robotIcon);//This may need to be changed.
+
+        //Wait a few seconds
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+
+        }
+
+
+        //.setIcon(new ImageIcon(redCircleIcon.getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+    }
+
+
+}
 
 
 
