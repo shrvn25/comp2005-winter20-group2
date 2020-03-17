@@ -53,7 +53,7 @@ public class VerifyBidProcessor {
             nextSquareIndex = i + 1;
             currentMovingDirection = returnCurrentDirection(currentSquare, nextSquare);
 
-            if (doesPlayerMoveThroughABlackBarrier(currentSquare, nextSquare) == false) {
+            if (doesPlayerMoveThroughABlackBarrier(currentSquare, nextSquare) == true) {
                 return false;
             } else if (isThereARobotOnNextSquare(nextSquare) == true) {
                 return false;
