@@ -45,7 +45,7 @@ public class VerifyBidProcessor {
         GridSquare nextSquare = this.listOfSquaresMovedInOrder[0 + 1];
         int nextSquareIndex = 0 + 1;
         String currentMovingDirection = returnCurrentDirection(currentSquare, nextSquare);
-        for (int i = 0; i < this.listOfSquaresMovedInOrder.length; i++) {
+        for (int i = 0; i < (this.listOfSquaresMovedInOrder.length - 1); i++) {
 
             currentSquare = this.listOfSquaresMovedInOrder[i];
             currentSquareIndex = i;
