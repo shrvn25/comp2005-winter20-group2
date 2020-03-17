@@ -909,7 +909,7 @@ public class GameBoard extends JFrame implements ActionListener {
 
     }
 
-private void moveWinningBiddersRobot(GridSquare [] playersClickedSquares){ //Note about pass by reference.......
+private void moveWinningBiddersRobot(GridSquare [] playersClickedSquares){ //JUNAID LOOK AT THIS!
         RobotPieces playersRobot = playerWithLowestBid.getPlayersRobot();
 
         //Get the gridsquare the robot is on.
@@ -923,10 +923,11 @@ private void moveWinningBiddersRobot(GridSquare [] playersClickedSquares){ //Not
 
         //Remove the icon from the gridsquare
         gridSquares[squareRowCoord][squareColumnCoord].setIcon(null);
+        gridSquares[squareColumnCoord][squareColumnCoord].setVisible(true); //Force it to show?
 
         //Wait a few seconds
         try {
-            Thread.sleep(2000);
+            Thread.sleep(200);
         } catch (Exception e) {
 
         }
@@ -936,10 +937,10 @@ private void moveWinningBiddersRobot(GridSquare [] playersClickedSquares){ //Not
         squareColumnCoord = playersClickedSquares[i].getSquaresColumnCoordinate();
 
         gridSquares[squareRowCoord][squareColumnCoord].setIcon(robotIcon);//This may need to be changed.
-
+        gridSquares[squareColumnCoord][squareColumnCoord].setVisible(true); //Force it to show?
         //Wait a few seconds
         try {
-            Thread.sleep(2000);
+            Thread.sleep(200);
         } catch (Exception e) {
 
         }
