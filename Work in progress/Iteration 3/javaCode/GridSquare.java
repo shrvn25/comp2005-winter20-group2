@@ -195,11 +195,11 @@ public class GridSquare extends JButton
      */
 
     public boolean doesSquareHaveATargetTile(){
-        if (squaresTargetTile != null){
-            return true;
+        if (squaresTargetTile == null){
+            return false;
         }
         else{
-            return false;
+            return true;
         }
     }
 
