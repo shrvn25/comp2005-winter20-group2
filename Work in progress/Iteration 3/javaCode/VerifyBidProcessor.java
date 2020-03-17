@@ -4,8 +4,6 @@
 //import com.group2.javaCode.Robot;
 //import com.group2.physicalgameobjects.*;
 
-import java.util.ArrayList;
-
 /**
  * This class deals with the bidding process.
  */
@@ -98,8 +96,8 @@ public class VerifyBidProcessor {
     }
 
     private boolean doesPlayerClickTheSquareWithTargetTileLast() {
-        if (this.robotToMove.getRobotRowCoord() == this.listOfSquaresMovedInOrder[this.listOfSquaresMovedInOrder.length - 1].getSquaresRowCoordinate()) {
-            if (this.robotToMove.getRobotColumnCoord() == this.listOfSquaresMovedInOrder[this.listOfSquaresMovedInOrder.length - 1].getSquaresColumnCoordinate()) {
+        if (this.squareWithDesiredTargetTile.getSquaresRowCoordinate() == this.listOfSquaresMovedInOrder[this.listOfSquaresMovedInOrder.length - 1].getSquaresRowCoordinate()) {
+            if (this.squareWithDesiredTargetTile.getSquaresColumnCoordinate() == this.listOfSquaresMovedInOrder[this.listOfSquaresMovedInOrder.length - 1].getSquaresColumnCoordinate()) {
                 return true;
             }
         }
