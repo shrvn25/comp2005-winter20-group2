@@ -322,14 +322,14 @@ public class VerifyBidProcessor {
         int rowCoordinateEndingSquare = endingSquare.getSquaresRowCoordinate();
         int columnCoordinateEndingSquare = endingSquare.getSquaresColumnCoordinate();
 
-        int EndRowCoordMinusStartRowCoord = rowCoordinateEndingSquare - rowCoordinateStartSquare;
-        int EndColCoordMinusStartColCoord = columnCoordinateEndingSquare - columnCoordinateStartSquare;
+        int endRowCoordMinusStartRowCoord = rowCoordinateEndingSquare - rowCoordinateStartSquare;
+        int endColCoordMinusStartColCoord = columnCoordinateEndingSquare - columnCoordinateStartSquare;
 
-        if ((EndColCoordMinusStartColCoord == 0) && (EndRowCoordMinusStartRowCoord > 0)) {
+        if ((endColCoordMinusStartColCoord == 0) && (endRowCoordMinusStartRowCoord < 0)) {
             return "NORTH";
-        } else if ((EndColCoordMinusStartColCoord == 0) && (EndRowCoordMinusStartRowCoord < 0)) {
+        } else if ((endColCoordMinusStartColCoord == 0) && (endRowCoordMinusStartRowCoord > 0)) {
             return "SOUTH";
-        } else if ((EndColCoordMinusStartColCoord > 0) && (EndRowCoordMinusStartRowCoord == 0)) {
+        } else if ((endColCoordMinusStartColCoord > 0) && (endRowCoordMinusStartRowCoord == 0)) {
             return "EAST";
         } //else if ((EndColCoordMinusStartColCoord < 0) && (EndRowCoordMinusStartRowCoord == 0)) {
             //return "WEST";
