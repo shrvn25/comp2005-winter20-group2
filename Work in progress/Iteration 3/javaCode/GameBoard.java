@@ -239,10 +239,26 @@ public class GameBoard extends JFrame implements ActionListener {
     private void createButtonsWithIconsAndTargetTilesAndAddToGrid() {
         // for the bottom panel:
         // create the buttons and add them to the grid
-        gridSquares = new GridSquare[x][y];
+        gridSquares = new GridSquare[y][x];
+
+        for (int row = 0; row < y; row++) {
+            for (int column = 0; column < x; column++) {
+                gridSquares[row][column] = new GridSquare(row, column);//THIS IS AN ERROR< X AND Y SHOULD BE COLUMN and ROW.
+                gridSquares[row][column].setSize(20, 20);
+                gridSquares[row][column].setColor(column + row);
+                gridSquares[row][column].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
+
+
+                //gridSquares [column][row].addMouseListener( this);		// AGAIN, don't forget this line!
+
+                bottomPanel.add(gridSquares[row][column]); //Adding to GridLayout happens to each row after row is filled.
+            }
+        }
+
+        /*
         for (int column = 0; column < x; column++) {
             for (int row = 0; row < y; row++) {
-                gridSquares[column][row] = new GridSquare(x, y);
+                gridSquares[column][row] = new GridSquare(column, row);//THIS IS AN ERROR< X AND Y SHOULD BE COLUMN and ROW.
                 gridSquares[column][row].setSize(20, 20);
                 gridSquares[column][row].setColor(column + row);
                 gridSquares[column][row].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.black));
@@ -253,6 +269,8 @@ public class GameBoard extends JFrame implements ActionListener {
                 bottomPanel.add(gridSquares[column][row]);
             }
         }
+        */
+        //TODO I'm leaving this section alone, but the row and columns need to be replaced here.
         for (int row = 1; row < y; row++) {
             gridSquares[0][row].setBorder(BorderFactory.createMatteBorder(4, 1, 1, 1, Color.black));
         }
