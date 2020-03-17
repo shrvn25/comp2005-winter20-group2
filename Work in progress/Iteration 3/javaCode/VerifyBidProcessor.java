@@ -71,6 +71,14 @@ public class VerifyBidProcessor {
                             }
                         }
                     }
+                    else{
+                        int numberOfMoves = countNumberOfMovesOnSimpleBoard();
+                        if (numberOfMoves <= 1) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
                 }
             } else if (doesNextSquareHaveBarrierToStopCurrentDirection(currentMovingDirection, nextSquare) == true) {
                 if (willPlayerLaterIntendToMovePerpendicularAfterReachingNextSquare(currentSquareIndex, nextSquareIndex) == false) {
