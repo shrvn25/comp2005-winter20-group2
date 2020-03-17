@@ -116,7 +116,7 @@ public class GridSquare extends JButton
      */
 
     public boolean isRobotOnSquare(){
-        if (this.squaresRobot != null){
+        if (this.squaresRobot == null){
             return false;
         }
         else{
