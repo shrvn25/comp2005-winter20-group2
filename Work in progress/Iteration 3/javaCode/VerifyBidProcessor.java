@@ -172,22 +172,18 @@ public class VerifyBidProcessor {
     private int countNumberOfMovesOnSimpleBoard() {
         int numberOfMoves = 0;
 
-        GridSquare currentSquare = this.listOfSquaresMovedInOrder[0];
-        int currentSquaresIndex = 0;
-        GridSquare nextSquare = this.listOfSquaresMovedInOrder[1];
 
-        String currentDirection = returnCurrentDirection(currentSquare, nextSquare);
 
-        for (int i = 1; i < (this.listOfSquaresMovedInOrder.length - 1); i++) {
+        for (int i = 0; i < (this.listOfSquaresMovedInOrder.length - 1); i++) {
+            GridSquare currentSquare = this.listOfSquaresMovedInOrder[i];
+            int currentSquaresIndex = i;
+            GridSquare nextSquare = this.listOfSquaresMovedInOrder[i + 1];
+            int nextSquaresIndex = i + 1;
+            String currentDirection = returnCurrentDirection(currentSquare, nextSquare);
 
-            if (isThereABlackBarrierOnFarEdgeOfNextSquare(nextSquare, currentDirection) == true) {
+            if ( (isThereABlackBarrierOnFarEdgeOfNextSquare(nextSquare, currentDirection) == true) || (isThereARobotToBlockIntendedDirectionAfterNextSquare(nextSquare, nextSquaresIndex) == true)) {
                 numberOfMoves += 1;
             }
-
-            currentSquaresIndex += 1;
-            currentSquare = nextSquare;
-            nextSquare = this.listOfSquaresMovedInOrder[currentSquaresIndex + 1];
-            currentDirection = returnCurrentDirection(currentSquare, nextSquare);
         }
         return numberOfMoves;
     }
@@ -274,7 +270,7 @@ public class VerifyBidProcessor {
      * @param
      * @return
      */
-
+/*
     private boolean isThereARobotToBlockIntendedDirectionAfterNextSquare(String intendedDirection, GridSquare nextSquare) {
         //First we need to get the square from the gameboard that is adjacent to the target tile square and in the
         //same direction as the intended direction of the moving robot.
@@ -312,7 +308,7 @@ public class VerifyBidProcessor {
             return true;
         }
 
-    }
+    } */
 
     /**
      * Note, square MUST have different coordinates that are positive integers, or it won't work.
