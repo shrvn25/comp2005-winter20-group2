@@ -59,7 +59,7 @@ public class VerifyBidProcessor {
                 return false;
             } else if (doesTheNextSquareHaveTheTargetTileToReach(nextSquare) == true) {
                 if (isTheNextSquareTheLastSquareClicked(nextSquare) == true) {
-                    if (doesNextSquareHaveBarrierToStopIntendedDirection(currentMovingDirection, nextSquare) == false) {
+                    if (doesNextSquareHaveBarrierToStopCurrentDirection(currentMovingDirection, nextSquare) == false) {
                         if (isThereARobotToBlockIntendedDirectionAfterNextSquare(nextSquare, nextSquareIndex) == false) {//Fix this.
                             return false;
                         } else {
@@ -72,7 +72,7 @@ public class VerifyBidProcessor {
                         }
                     }
                 }
-            } else if (doesNextSquareHaveBarrierToStopIntendedDirection(currentMovingDirection, nextSquare) == true) {
+            } else if (doesNextSquareHaveBarrierToStopCurrentDirection(currentMovingDirection, nextSquare) == true) {
                 if (willPlayerLaterIntendToMovePerpendicularAfterReachingNextSquare(currentSquareIndex, nextSquareIndex) == false) {
                     return false;
                 }
@@ -214,18 +214,18 @@ public class VerifyBidProcessor {
      * in it's intended direction, false if not.
      *
      * @param intendedDirection    A string "NORTH", "SOUTH", "EAST", or "WEST" for robot's intended direction.
-     * @param squareWithTargetTile A square that has the target tile where the robot hopes to stop on.
+     * @param nextSquare A square that has the target tile where the robot hopes to stop on.
      * @return true if there is a barrier on the target square that can stop the robot from moving in it's intended
      * direction, false if not.
      */
-    private boolean doesNextSquareHaveBarrierToStopIntendedDirection(String intendedDirection, GridSquare squareWithTargetTile) {
-        if (intendedDirection.equals("NORTH") && (squareWithTargetTile.doesSquareHaveNorthEdgeBarrier() == true)) {
+    private boolean doesNextSquareHaveBarrierToStopCurrentDirection(String intendedDirection, GridSquare nextSquare) {
+        if (intendedDirection.equals("NORTH") && (nextSquare.doesSquareHaveNorthEdgeBarrier() == true)) {
             return true;
-        } else if (intendedDirection.equals("SOUTH") && (squareWithTargetTile.doesSquareHaveSouthEdgeBarrier() == true)) {
+        } else if (intendedDirection.equals("SOUTH") && (nextSquare.doesSquareHaveSouthEdgeBarrier() == true)) {
             return true;
-        } else if (intendedDirection.equals("EAST") && (squareWithTargetTile.doesSquareHaveEastEdgeBarrier() == true)) {
+        } else if (intendedDirection.equals("EAST") && (nextSquare.doesSquareHaveEastEdgeBarrier() == true)) {
             return true;
-        } else if (intendedDirection.equals("WEST") && (squareWithTargetTile.doesSquareHaveWestEdgeBarrier() == true)) {
+        } else if (intendedDirection.equals("WEST") && (nextSquare.doesSquareHaveWestEdgeBarrier() == true)) {
             return true;
         } else {
             return false;
