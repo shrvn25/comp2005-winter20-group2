@@ -40,10 +40,10 @@ public class GridSquare extends JButton
         this.squaresTargetTile = null;
         this.squaresDiagonalBarrier = null;
 
-        this.northEdgeBarrier = null;
-        this.southEdgeBarrier = null;
-        this.eastEdgeBarrier = null;
-        this.westEdgeBarrier = null;
+        this.northEdgeBarrier = "";
+        this.southEdgeBarrier = "";
+        this.eastEdgeBarrier = "";
+        this.westEdgeBarrier = "";
 
         this.setEnabled(false);//By default when first made, the buttons will not be clickable. This will change when players need to prove their move.
     }
