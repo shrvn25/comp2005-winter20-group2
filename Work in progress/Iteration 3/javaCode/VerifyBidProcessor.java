@@ -178,7 +178,7 @@ public class VerifyBidProcessor {
 
         String currentDirection = returnCurrentDirection(currentSquare, nextSquare);
 
-        for (int i = 1; i < this.listOfSquaresMovedInOrder.length; i++) {
+        for (int i = 1; i < (this.listOfSquaresMovedInOrder.length - 1); i++) {
 
             if (isThereABlackBarrierOnFarEdgeOfNextSquare(nextSquare, currentDirection) == true) {
                 numberOfMoves += 1;
